@@ -1,0 +1,1 @@
+sudo docker rmi -f temp && sudo docker build -t temp . && sudo docker run temp
