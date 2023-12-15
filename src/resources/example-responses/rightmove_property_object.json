@@ -1,0 +1,176 @@
+
+{
+    "id":142881164,
+    "bedrooms":2,
+    "bathrooms":1,
+    "numberOfImages":14,
+    "numberOfFloorplans":0,
+    "numberOfVirtualTours":1,
+    "summary":"Space to work from home | Allocated off street parking for 1 car | Council tax band B | Coop supermarket on your doorstep | Ideal for a professional couple | White goods included | Furnished | Short commute to City Centre | A good size two bed first floor flat situated in this modern ...",
+    "displayAddress":"St Annes, Burgess Green Close, BS4 4DG",
+    "countryCode":"GB",
+    "location":{
+       "latitude":51.454601,
+       "longitude":-2.54396
+    },
+    "propertyImages":{
+       "images":[
+          {
+             "srcUrl":"https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/99k/98792/142881164/98792_SOU130120_L_IMG_00_0000_max_476x317.jpeg",
+             "url":"99k/98792/142881164/98792_SOU130120_L_IMG_00_0000.jpeg",
+             "caption":"Photo 01"
+          },
+          {
+             "srcUrl":"https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/99k/98792/142881164/98792_SOU130120_L_IMG_01_0000_max_476x317.jpeg",
+             "url":"99k/98792/142881164/98792_SOU130120_L_IMG_01_0000.jpeg",
+             "caption":"Photo 02"
+          },
+          {
+             "srcUrl":"https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/99k/98792/142881164/98792_SOU130120_L_IMG_02_0000_max_476x317.jpeg",
+             "url":"99k/98792/142881164/98792_SOU130120_L_IMG_02_0000.jpeg",
+             "caption":"Photo 03"
+          },
+          {
+             "srcUrl":"https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/99k/98792/142881164/98792_SOU130120_L_IMG_03_0000_max_476x317.jpeg",
+             "url":"99k/98792/142881164/98792_SOU130120_L_IMG_03_0000.jpeg",
+             "caption":"Photo 04"
+          },
+          {
+             "srcUrl":"https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/99k/98792/142881164/98792_SOU130120_L_IMG_04_0000_max_476x317.jpeg",
+             "url":"99k/98792/142881164/98792_SOU130120_L_IMG_04_0000.jpeg",
+             "caption":"Photo 05"
+          },
+          {
+             "srcUrl":"https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/99k/98792/142881164/98792_SOU130120_L_IMG_05_0000_max_476x317.jpeg",
+             "url":"99k/98792/142881164/98792_SOU130120_L_IMG_05_0000.jpeg",
+             "caption":"Photo 06"
+          },
+          {
+             "srcUrl":"https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/99k/98792/142881164/98792_SOU130120_L_IMG_06_0000_max_476x317.jpeg",
+             "url":"99k/98792/142881164/98792_SOU130120_L_IMG_06_0000.jpeg",
+             "caption":"Photo 07"
+          },
+          {
+             "srcUrl":"https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/99k/98792/142881164/98792_SOU130120_L_IMG_07_0000_max_476x317.jpeg",
+             "url":"99k/98792/142881164/98792_SOU130120_L_IMG_07_0000.jpeg",
+             "caption":"Photo 08"
+          },
+          {
+             "srcUrl":"https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/99k/98792/142881164/98792_SOU130120_L_IMG_08_0000_max_476x317.jpeg",
+             "url":"99k/98792/142881164/98792_SOU130120_L_IMG_08_0000.jpeg",
+             "caption":"Photo 09"
+          },
+          {
+             "srcUrl":"https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/99k/98792/142881164/98792_SOU130120_L_IMG_09_0000_max_476x317.jpeg",
+             "url":"99k/98792/142881164/98792_SOU130120_L_IMG_09_0000.jpeg",
+             "caption":"Photo 10"
+          },
+          {
+             "srcUrl":"https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/99k/98792/142881164/98792_SOU130120_L_IMG_10_0000_max_476x317.jpeg",
+             "url":"99k/98792/142881164/98792_SOU130120_L_IMG_10_0000.jpeg",
+             "caption":"Photo 11"
+          },
+          {
+             "srcUrl":"https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/99k/98792/142881164/98792_SOU130120_L_IMG_11_0000_max_476x317.jpeg",
+             "url":"99k/98792/142881164/98792_SOU130120_L_IMG_11_0000.jpeg",
+             "caption":"Photo 12"
+          },
+          {
+             "srcUrl":"https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/99k/98792/142881164/98792_SOU130120_L_IMG_12_0000_max_476x317.jpeg",
+             "url":"99k/98792/142881164/98792_SOU130120_L_IMG_12_0000.jpeg",
+             "caption":"Photo 13"
+          },
+          {
+             "srcUrl":"https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/99k/98792/142881164/98792_SOU130120_L_IMG_13_0000_max_476x317.jpeg",
+             "url":"99k/98792/142881164/98792_SOU130120_L_IMG_13_0000.jpeg",
+             "caption":"Photo 14"
+          }
+       ],
+       "mainImageSrc":"https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/99k/98792/142881164/98792_SOU130120_L_IMG_00_0000_max_476x317.jpeg",
+       "mainMapImageSrc":"https://media.rightmove.co.uk:443/dir/crop/10:9-16:9/99k/98792/142881164/98792_SOU130120_L_IMG_00_0000_max_296x197.jpeg"
+    },
+    "propertySubType":"Apartment",
+    "listingUpdate":{
+       "listingUpdateReason":"new",
+       "listingUpdateDate":"2023-12-12T15:24:02Z"
+    },
+    "premiumListing":true,
+    "featuredProperty":false,
+    "price":{
+       "amount":1150,
+       "frequency":"monthly",
+       "currencyCode":"GBP",
+       "displayPrices":[
+          {
+             "displayPrice":"£1,150 pcm",
+             "displayPriceQualifier":""
+          },
+          {
+             "displayPrice":"£265 pw",
+             "displayPriceQualifier":""
+          }
+       ]
+    },
+    "customer":{
+       "branchId":98792,
+       "brandPlusLogoURI":"/99k/98792/branch_logo_98792_0000.jpg",
+       "contactTelephone":"0117 463 0422",
+       "branchDisplayName":"The Bristol Residential Letting Co, Southville",
+       "branchName":"Southville",
+       "brandTradingName":"The Bristol Residential Letting Co",
+       "branchLandingPageUrl":"/estate-agents/agent/The-Bristol-Residential-Letting-Co/Southville-98792.html",
+       "development":false,
+       "showReducedProperties":true,
+       "commercial":false,
+       "showOnMap":true,
+       "enhancedListing":false,
+       "developmentContent":"None",
+       "buildToRent":false,
+       "buildToRentBenefits":[
+          
+       ],
+       "brandPlusLogoUrl":"https://media.rightmove.co.uk:443/dir/99k/98792/branch_logo_98792_0000_max_100x50.jpg"
+    },
+    "distance":"None",
+    "transactionType":"rent",
+    "productLabel":{
+       "productLabelText":"Premium Listing",
+       "spotlightLabel":false
+    },
+    "commercial":false,
+    "development":false,
+    "residential":true,
+    "students":false,
+    "auction":false,
+    "feesApply":true,
+    "feesApplyText":"None",
+    "displaySize":"",
+    "showOnMap":true,
+    "propertyUrl":"/properties/142881164#/?channel=RES_LET",
+    "contactUrl":"/property-to-rent/contactBranch.html?propertyId=142881164",
+    "staticMapUrl":"None",
+    "channel":"RENT",
+    "firstVisibleDate":"2023-12-12T15:18:09Z",
+    "keywords":[
+       
+    ],
+    "keywordMatchType":"no_keyword",
+    "saved":false,
+    "hidden":false,
+    "onlineViewingsAvailable":false,
+    "lozengeModel":{
+       "matchingLozenges":[
+          
+       ]
+    },
+    "hasBrandPlus":true,
+    "displayStatus":"",
+    "enquiredTimestamp":"None",
+    "heading":"",
+    "addedOrReduced":"Added on 12/12/2023",
+    "formattedBranchName":" by The Bristol Residential Letting Co, Southville",
+    "formattedDistance":"",
+    "propertyTypeFullDescription":"2 bedroom apartment",
+    "isRecent":false,
+    "enhancedListing":false
+ }
