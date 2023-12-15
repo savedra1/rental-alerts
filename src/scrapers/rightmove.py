@@ -1,15 +1,17 @@
-import requests
 import json
-import sys
+import re
 from datetime import datetime
 
+from utils.constants import RIGHTMOVE_HTML_EXTRACTION
+from utils.web_session import get_requests_session
 
 class Rightmove():
-    def __init__(self, location, max_radius, min_bedroom, max_price) -> None:
-        self.region_id: str = self.get_region_code(location) 
-        self.max_radius: str = self.verify_integer('radius', max_radius)
-        self.min_bedrooms: str = self.verify_integer('max_bedrooms', min_bedroom)
-        self.max_price: str = self.verify_integer('max_price', max_price)
+    def __init__(self, logger, location, max_radius, min_bedroom, max_price) -> None:
+        self.logger = logger
+        self.region_id: str | None = self.get_region_code(location) 
+        self.max_radius: str = max_radius
+        self.min_bedrooms: str = min_bedroom
+        self.max_price: str = max_price
         self.base_url = 'https://www.rightmove.co.uk/property-to-rent/find.html'
         self.headers = {
             'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'
@@ -20,20 +22,8 @@ class Rightmove():
         with open ('src/resources/rightmove_location_codes.json', 'r') as f:
             json_data = json.load(f)
         
-        region_id = json_data.get(location.lower(), None)
+        return json_data.get(location.lower(), None)
 
-        if not region_id:
-            sys.exit(f'Could not find a region ID for {location}.')
-        return region_id
-       
-    @staticmethod
-    def verify_integer(param_name, value: str) -> str:
-        try:
-            _ = int(value)
-            return value
-        except Exception:
-            sys.exit(f'Error: Rightmove {param_name} must be an integer.')
-    
     def construct_url(self):
         return f'\
             {self.base_url}?\
@@ -45,56 +35,42 @@ class Rightmove():
             &includeLetAgreed=false'.replace(' ', '')
 
     def extract_data(self, html_string: str) -> list:
-        try:
-            properties = json.loads(
-                html_string.split(
-                    '<script>window.jsonModel = ')[1].split(
-                        '</script><script>'
-                    )[0]
-                )['properties']
-        except Exception:
-            print('Failed to parse rightmove HTML response.')
-            return None
+        data_pattern = re.compile(
+            re.escape(RIGHTMOVE_HTML_EXTRACTION['start']) + r'({.*?})' + re.escape(RIGHTMOVE_HTML_EXTRACTION['end'])
+        ) 
+        match = data_pattern.search(html_string)
+        if match:
+            return json.loads(match.group(1))['properties']
         
-        if not type(properties) is list and not type(properties) is None:
-            print(f'Failed to extract properties list form html response: {self.construct_url()}')
-            return None
-        return properties
+        self.logger.error(f'Rightmove HTML response has been updated:\n{str(html_string)}')
+        return None
     
-    def get_todays_properties(self) -> list | None:
+    def get_todays_listings(self) -> list | None:
+        if not self.region_id:
+            self.logger.warn(f'Could not find a region ID for {self.location}. Find instructions on how to add your region ID here:')
+            return None
+
         query_url = self.construct_url()
 
-        response = requests.get(query_url, headers=self.headers)
+        with get_requests_session() as web_session:
+            response = web_session.get(query_url, headers=self.headers)
+
         properties: list = self.extract_data(response.text)
         
         if not properties:
             return None
         
+        today = datetime.now().strftime('20%y-%m-%d')
         todays_properties = []
         for num, property in enumerate(properties, start=1):
+            self.logger.info(f'{str(num)} | Property: {property["id"]} | Published: {property["addedOrReduced"]}')
             if property['addedOrReduced'].lower() == 'added today'\
-            or property['firstVisibleDate'].split('T')[0] == datetime.now().strftime('%y-%m-%d'):
+            or property['firstVisibleDate'].split('T')[0] == today: 
                 todays_properties.append({
-                    'index': str(num),
-                    'property_url': f'https://rightmove.co.uk{property["propertyUrl"]}',
-                    'property_price': property['price']['amount']
+                    'id': property['id'],
+                    'url': f'https://rightmove.co.uk{property["propertyUrl"]}',
+                    'price': property['price']['amount'],
+                    'listed_date': property['addedOrReduced']
                 })
 
         return todays_properties
-
-        
-
-
-
-
-
-
-        
-
-
-
-    
-
-
-
-

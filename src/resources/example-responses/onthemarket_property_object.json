@@ -1,0 +1,88 @@
+{
+    "features":[
+       "Nearest station 0.3mi.",
+       "Furnished",
+       "Nearest school 0.2mi."
+    ],
+    "bedrooms-text":"2",
+    "images-count":21,
+    "label-text":"Recently added",
+    "price-qualifier":"None",
+    "data-label-id":"recent",
+    "images":[
+       {
+          "default":"https://media.onthemarket.com/properties/14045149/1467300446/image-0-480x320.jpg",
+          "portrait?":false,
+          "webp":"https://media.onthemarket.com/properties/14045149/1467300446/image-0-480x320.webp"
+       },
+       {
+          "default":"https://media.onthemarket.com/properties/14045149/1467300446/image-1-480x320.jpg",
+          "portrait?":false,
+          "webp":"https://media.onthemarket.com/properties/14045149/1467300446/image-1-480x320.webp"
+       },
+       {
+          "default":"https://media.onthemarket.com/properties/14045149/1467300446/image-2-480x320.jpg",
+          "portrait?":false,
+          "webp":"https://media.onthemarket.com/properties/14045149/1467300446/image-2-480x320.webp"
+       },
+       {
+          "default":"https://media.onthemarket.com/properties/14045149/1467300446/image-3-480x320.jpg",
+          "portrait?":false,
+          "webp":"https://media.onthemarket.com/properties/14045149/1467300446/image-3-480x320.webp"
+       },
+       {
+          "default":"https://media.onthemarket.com/properties/14045149/1467300446/image-4-480x320.jpg",
+          "portrait?":false,
+          "webp":"https://media.onthemarket.com/properties/14045149/1467300446/image-4-480x320.webp"
+       }
+    ],
+    "fees-description":"<p>\n  The asking rent does not include charges that may be payable before and/or during the duration of the tenancy, therefore you may be required to make one or more of the following permitted payments:\n  </p>\n  <ul>\n    <li>A refundable holding deposit (up to 1 week’s rent)</li>\n    <li>A refundable tenancy deposit (up to 5 weeks’ rent (or 6 weeks’ rent if the annual rent is £50,000 or more))</li>\n    <li>A payment to alter the tenancy agreement, when requested by the tenant (up to £50 inc VAT, or reasonable costs incurred if higher)</li>\n    <li>Payments associated with early termination of the tenancy when requested by the tenant</li>\n    <li>Interest, at a rate of up to 3% above the Bank of England’s base rate, for late payment of rent (which is more than 14 days overdue)</li>\n    <li>A default fee for the replacement of a lost key or security device</li>\n    <li>Payments to service providers in respect of utilities, communication services, TV licence and council tax</li>\n    <li>Other payments, permitted under appropriate legislation, including damages.</li>\n  </ul>\n  <p>\n  A letting or property management agent in England must also be a member of a property redress scheme and a member of a client money protection scheme. For further information, or a copy of their membership certificates, please contact the agent directly.\n  </p>\n",
+    "display_address":"23 Waverly Rd - 1stFFRedlandBristol",
+    "property-sticker":"Spotlight Property",
+    "cover-images":{
+       "default":"https://media.onthemarket.com/properties/14045149/1467300446/image-0-480x320.jpg",
+       "webp":"https://media.onthemarket.com/properties/14045149/1467300446/image-0-480x320.webp"
+    },
+    "agent":{
+       "id":34988,
+       "display-logo":{
+          "url":"https://media.onthemarket.com/agents/companies/34/150611123910798/logo-100x65.jpg",
+          "height":50,
+          "width":100,
+          "resized?":true
+       },
+       "name":"Accommodation Unlimited - Redland",
+       "telephone":"0117 295 7592",
+       "base-contact-url":"/agents/contact/14045149/",
+       "contact-url":"/agents/contact/14045149/?form-name=details-contact",
+       "details-url":"/agents/branch/accommodation-unlimited-redland/",
+       "development?":false
+    },
+    "property-labels":[
+       
+    ],
+    "property-title":"2 bedroom detached house to rent",
+    "id":"14045149",
+    "days-since-added-reduced":"OnTheMarket < 7 days",
+    "eb-cover-images":[
+       {
+          "default":"https://media.onthemarket.com/properties/14045149/1467300446/image-1-480x320.jpg",
+          "url":"https://media.onthemarket.com/properties/14045149/1467300446/image-1-480x320.jpg",
+          "portrait?":false,
+          "webp":"https://media.onthemarket.com/properties/14045149/1467300446/image-1-480x320.webp"
+       },
+       {
+          "default":"https://media.onthemarket.com/properties/14045149/1467300446/image-2-480x320.jpg",
+          "url":"https://media.onthemarket.com/properties/14045149/1467300446/image-2-480x320.jpg",
+          "portrait?":false,
+          "webp":"https://media.onthemarket.com/properties/14045149/1467300446/image-2-480x320.webp"
+       }
+    ],
+    "spotlight?":true,
+    "fees-label":"Tenancy info",
+    "show-features?":true,
+    "property-link":"/details/14045149/",
+    "recently-added?":true,
+    "cover-image":"https://media.onthemarket.com/properties/14045149/1467300446/image-0-480x320.jpg",
+    "price":"£1,450 pcm (£335 pw)"
+ }

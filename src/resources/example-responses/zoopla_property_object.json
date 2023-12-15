@@ -1,0 +1,100 @@
+{
+    "address":"Bristol South End, Bedminster, Bristol BS3",
+    "alternativeRentFrequencyLabel":"£277 pw",
+    "availableFrom":"immediately",
+    "branch":{
+       "branchId":52334,
+       "branchDetailsUri":"/find-agents/branch/ocean-southville-bristol-52334/",
+       "logoUrl":"https: //st.zoocdn.com/zoopla_static_agent_logo_(724030).png",
+       "name":"Ocean - Southville",
+       "phone":"0117 444 1361"
+    },
+    "displayType":"standard",
+    "featuredType":"None",
+    "features":[
+       {
+          "iconId":"bath",
+          "content":1
+       },
+       {
+          "iconId":"bed",
+          "content":2
+       },
+       {
+          "iconId":"chair",
+          "content":1
+       }
+    ],
+    "flag":"Just added",
+    "highlights":[
+       
+    ],
+    "image":{
+       "src":"https://lid.zoocdn.com/645/430/0d382241f04121effa5db98dd79eab5558a0337c.jpg",
+       "responsiveImgList":[
+          {
+             "width":645,
+             "src":"https://lid.zoocdn.com/645/430/0d382241f04121effa5db98dd79eab5558a0337c.jpg"
+          },
+          {
+             "width":354,
+             "src":"https://lid.zoocdn.com/354/255/0d382241f04121effa5db98dd79eab5558a0337c.jpg"
+          }
+       ],
+       "caption":"None"
+    },
+    "isPremium":false,
+    "lastPublishedDate":"2023-12-15T12:18:52",
+    "listingId":"63560761",
+    "listingUris":{
+       "contact":"/to-rent/contact/63560761/",
+       "detail":"/to-rent/details/63560761/",
+       "success":"/to-rent/contact/success/63560761/"
+    },
+    "location":{
+       "coordinates":{
+          "isApproximate":false,
+          "latitude":51.435447,
+          "longitude":-2.595829
+       }
+    },
+    "numberOfFloorPlans":1,
+    "numberOfImages":5,
+    "numberOfVideos":1,
+    "price":"£1,200 pcm",
+    "priceDrop":"None",
+    "priceTitle":"",
+    "propertyType":"flat",
+    "publishedOn":"15th Dec 2023",
+    "publishedOnLabel":"Listed on",
+    "shortPriceTitle":"£1200",
+    "summaryDescription":"A modern, well presented two bedroom unfurnsihed flat complete with parking. The property that has a modern open plan living room with seperate ...",
+    "tags":[
+       
+    ],
+    "title":"2 bed flat to rent",
+    "transports":[
+       
+    ],
+    "underOffer":false,
+    "availableFromLabel":"Available",
+    "isFavourite":false,
+    "gallery":[
+       [
+          "None",
+          "/5d8beaf8cdbd55bc957f8847b11bcc693c7792d6.jpg"
+       ],
+       [
+          "None",
+          "/39459df858762d63f4095228c304e16d30332a16.jpg"
+       ],
+       [
+          "None",
+          "/08f163a45eefe6a5e82d42aef45f0430f945d300.jpg"
+       ],
+       [
+          "None",
+          "/a0a08fe63e0f91ee58494c44817bd46b65ada959.jpg"
+       ]
+    ]
+ }
