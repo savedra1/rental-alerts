@@ -1,4 +1,4 @@
-"""import boto3
+import boto3
 
 import sys
 import json
@@ -42,4 +42,3 @@ def lambda_handler(evet, context):
     if not all_properties:
         logger.info('Nothng new found.')
         return
-"""

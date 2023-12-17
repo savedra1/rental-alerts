@@ -9,4 +9,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . /home/michael/personal_projects/renting_alerts/
 
-CMD ["python", "src/main.py"]
+CMD ["python", "tmp.py"]

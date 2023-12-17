@@ -4,34 +4,50 @@ on:
   push:
     paths:
       - '**/*.tf'
+      - 'src/**'
 
 jobs:
   deploy-terraform:
     runs-on: ubuntu-latest
 
     env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      TWILIO_SID: ${{ secrets.TWILIO_SID }}
-      TWILIO_AUTH_KEY: ${{ secrets.TWILIO_AUTH_KEY }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
+      TF_VAR_S3_STATE_BUCKET_NAME: ${{ secrets.S3_STATE_BUCKET_NAME }}
+      TF_VAR_SSM_TWILIO_SID: ${{ secrets.TWILIO_SID }}
+      TF_VAR_SSM_TWILIO_AUTH_KEY: ${{ secrets.TWILIO_AUTH_TOKEN }}
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2 
+
+      - name: Create temporary dir for function layer # Needs to be called `python`
+        run: mkdir -p python
+
+      - name: Create function layer
+        run: | 
+          cd python
+          pip install -r ../requirements.txt -t .
+          
+          ls -a
+          cd ..
+          zip -r aws-infra/python.zip ./python
+
+      - name: Zip Function source
+        run: |
+          cd src
+          zip -r ../aws-infra/function_code.zip .
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: 1.1.0
 
-      - name: Initialize Terraform
-        run: terraform init
-
+      - name: Initialise Terraform
+        run: |
+          cd aws-infra
+          terraform init -backend-config="bucket=tf-state-bucket-2213"
+      
       - name: Apply Terraform
         run: |
-          terraform apply -auto-approve \
-            -var "TWILIO_SID=${TWILIO_SID}" \
-            -var "TWILIO_AUTH_KEY=${TWILIO_AUTH_KEY}"
+          cd aws-infra
+          terraform apply -auto-approve
 
-      - name: Clean up
-        run: terraform destroy -auto-approve
