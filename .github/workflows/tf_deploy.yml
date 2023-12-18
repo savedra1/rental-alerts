@@ -50,7 +50,7 @@ jobs:
         run: |
           cd aws-infra
           terraform init -backend-config="bucket=tf-state-bucket-2213"
-      #terraform destroy -auto-approve
+          terraform destroy -auto-approve
       
       - name: Apply Terraform
         run: |

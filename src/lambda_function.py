@@ -6,7 +6,7 @@ import json
 from datetime import datetime
 
 from scrapers.rightmove import Rightmove
-from scrapers.zoopla import Zoopla
+#from scrapers.zoopla import Zoopla
 from scrapers.on_the_market import OnTheMarket
 
 from utils.logger import set_up_logger, alert_admin
@@ -70,13 +70,13 @@ class LambdaHandler():
         rm = Rightmove(self.logger, self.location, self.max_radius, self.min_bedrooms, self.max_price)
         rm_properties: list = rm.get_todays_listings()
 
-        zoopla = Zoopla(self.logger, self.location, self.max_radius, self.min_bedrooms, self.max_price)
-        zoopla_properties: list = zoopla.get_todays_listings()
+        #zoopla = Zoopla(self.logger, self.location, self.max_radius, self.min_bedrooms, self.max_price)
+        #zoopla_properties: list = zoopla.get_todays_listings()
 
         otm = OnTheMarket(self.logger, self.location, self.max_radius, self.min_bedrooms, self.max_price)
         otm_properties: list = otm.get_todays_listings()
         
-        all_properties: list = rm_properties + zoopla_properties + otm_properties
+        all_properties: list = rm_properties + otm_properties  # zoopla_properties + otm_properties
         return all_properties
     
     def update_cache(self, properties: list):# -> None:
