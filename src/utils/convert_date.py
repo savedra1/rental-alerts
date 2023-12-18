@@ -2,7 +2,7 @@
 from utils.constants import MONTH_FORMATS
 from datetime import datetime
 
-def zoopla_date_convert(date_str: str) -> str | None:
+def zoopla_date_convert(date_str: str): # -> str | None:
     # takes str for date in format "15th Dec 2023" and returns yyyy-mm-dd
     try:
         date_str = date_str.replace(' ', '')

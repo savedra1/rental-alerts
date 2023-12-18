@@ -14,7 +14,7 @@ from selenium.webdriver.chrome.options import Options
 
 
 class Zoopla:
-    def __init__(self, logger, location, max_radius, min_bedrooms, max_price) -> None:
+    def __init__(self, logger, location, max_radius, min_bedrooms, max_price):# -> None:
         self.logger = logger
         self.location = location
         self.max_radius = max_radius
@@ -34,7 +34,7 @@ class Zoopla:
             &radius={self.max_radius}\
             &results_sort=newest_listings&search_source=to-rent'.replace(' ', '')
 
-    def extract_data(self, html_data) -> list | None:
+    def extract_data(self, html_data):# -> list | None:
         try:
             properties_data_str = clean_json(
                 html_data.split(ZOOPLA_HTML_EXTRACTION['start'])[1].split(ZOOPLA_HTML_EXTRACTION['end'])[0]
@@ -62,7 +62,7 @@ class Zoopla:
         self.logger.error('Zoopla web response has been updated. Unable to parse result.')
         return None"""
 
-    def get_html_response(self) -> str | None:
+    def get_html_response(self):# -> str | None:
         query_url = self.construct_url()
         self.loger.info('Loading selenium webdriver...')
         try:
@@ -83,7 +83,7 @@ class Zoopla:
             self.logger.error(f'Selenium webdriver failed to return a valid HTML response from Zoopla:\n{err}')
             return None
 
-    def get_todays_listings(self) -> list | None:
+    def get_todays_listings(self):# -> list | None:
         html_response: str | None = self.get_html_response()
         if not html_response:
             return None

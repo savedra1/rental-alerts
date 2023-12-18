@@ -2,7 +2,7 @@ import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
-def get_requests_session() -> requests.Session():
+def get_requests_session():# -> requests.Session():
     """
     Returns a session obect with a mounted retry strategy
     used to support provision/deprovisioning resources.

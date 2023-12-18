@@ -7,7 +7,7 @@ from utils.constants import OTM_HTML_EXTRACTION
 
 
 class OnTheMarket():
-    def __init__(self, logger, location, max_radius, min_bedrooms, max_price) -> None:
+    def __init__(self, logger, location, max_radius, min_bedrooms, max_price):# -> None:
         self.logger = logger
         self.location = location
         self.max_radius = max_radius
@@ -18,7 +18,7 @@ class OnTheMarket():
             'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'
         }
     
-    def construct_url(self) -> str:
+    def construct_url(self):# -> str:
         return f'{self.base_url}{self.min_bedrooms}-bed-property/{self.location}/?max-price={self.max_price}&radius={self.max_radius}'
 
     def extract_data(self, html_string: str) -> list | None:
