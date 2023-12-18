@@ -41,14 +41,14 @@ def lambda_handler(event, context):
 
 
 class LambdaHandler():
-    def __init__(self, event, context, logger) -> None:
+    def __init__(self, event, context, logger):# -> None:
         self.event = event
         self.context = context
         self.logger = logger
         self.location, self.max_radius, self.min_bdrooms, self.max_price = self.get_config()
     
     @staticmethod
-    def get_config() -> (str, str, str, str):
+    def get_config():# -> (str, str, str, str):
         with open('src/resources/config.json', 'r') as f:
             config_data: dict = json.load(f)
     
@@ -66,31 +66,31 @@ class LambdaHandler():
 
         return location, max_radius, min_bedrooms, max_price
     
-    def get_new_listings(self) -> list | None:
+    def get_new_listings(self):# -> list | None:
         rm = Rightmove(self.logger, self.location, self.max_radius, self.min_bedrooms, self.max_price)
-        rm_properties: list | None = rm.get_todays_listings()
+        rm_properties: list = rm.get_todays_listings()
 
         zoopla = Zoopla(self.logger, self.location, self.max_radius, self.min_bedrooms, self.max_price)
-        zoopla_properties: list | None = zoopla.get_todays_listings()
+        zoopla_properties: list = zoopla.get_todays_listings()
 
         otm = OnTheMarket(self.logger, self.location, self.max_radius, self.min_bedrooms, self.max_price)
-        otm_properties: list | None = otm.get_todays_listings()
+        otm_properties: list = otm.get_todays_listings()
         
         all_properties: list = rm_properties + zoopla_properties + otm_properties
         return all_properties
     
-    def update_cache(self, properties: list) -> None:
+    def update_cache(self, properties: list):# -> None:
         with open('resources/todays_properties.json', 'r') as f:
             current_data = json.load(f)
             updated_data = current_data['publishedToday'] + properties
         with open('resources/todays_properties.json', 'w') as f:
             json.dump({"publishedToday": updated_data}, f)
 
-    def clear_cache(self) -> None:
+    def clear_cache(self):# -> None:
         with open('resources/todays_properties.json', 'w') as f:
             json.dump({"publishedToday": []}, f)
 
-    def run(self) -> None:
+    def run(self):# -> None:
         new_properties = self.get_new_listings()
         
         if not new_properties:

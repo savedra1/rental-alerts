@@ -4,7 +4,7 @@ import json
 from aws_utils import AWSUtils
 
 # Email configuration
-def send_email(listings: str) -> None:
+def send_email(listings: str):# -> None:
     sender_email = ""
     receiver_email = ""
     subject = "Subject of the email"
@@ -23,7 +23,7 @@ def send_email(listings: str) -> None:
     server.sendmail(sender_email, receiver_email, message)
     server.close()
 
-def send_email_atlassian_server(listings) -> int:
+def send_email_atlassian_server(listings):# -> int:
     response = requests.post(
         AWSUtils().get_api_password('atlassian/email_id'),
         headers = {

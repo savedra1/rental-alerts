@@ -6,7 +6,7 @@ from utils.constants import RIGHTMOVE_HTML_EXTRACTION
 from utils.web_session import get_requests_session
 
 class Rightmove():
-    def __init__(self, logger, location, max_radius, min_bedroom, max_price) -> None:
+    def __init__(self, logger, location, max_radius, min_bedroom, max_price):# -> None:
         self.logger = logger
         self.region_id: str | None = self.get_region_code(location) 
         self.max_radius: str = max_radius
@@ -18,7 +18,7 @@ class Rightmove():
         }
     
     @staticmethod
-    def get_region_code(location: str) -> str:
+    def get_region_code(location: str):# -> str:
         with open ('src/resources/rightmove_location_codes.json', 'r') as f:
             json_data = json.load(f)
         
@@ -34,7 +34,7 @@ class Rightmove():
             &includeLetAgreed=false\
             &includeLetAgreed=false'.replace(' ', '')
 
-    def extract_data(self, html_string: str) -> list:
+    def extract_data(self, html_string: str):# -> list:
         data_pattern = re.compile(
             re.escape(RIGHTMOVE_HTML_EXTRACTION['start']) + r'({.*?})' + re.escape(RIGHTMOVE_HTML_EXTRACTION['end'])
         ) 
@@ -45,7 +45,7 @@ class Rightmove():
         self.logger.error(f'Rightmove HTML response has been updated:\n{str(html_string)}')
         return None
     
-    def get_todays_listings(self) -> list | None:
+    def get_todays_listings(self):# -> list | None:
         if not self.region_id:
             self.logger.warn(f'Could not find a region ID for {self.location}. Find instructions on how to add your region ID here:')
             return None
