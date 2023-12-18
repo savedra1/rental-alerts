@@ -17,15 +17,3 @@ class AWSUtils:
         api_password = response['Parameter']['Value']
 
         return api_password
-
-    def replace_password(self, parameter_name, new_value) -> None:
-        """
-        Replace item in AWS parameter store
-        """
-        self.ssm.put_parameter (
-            Name = parameter_name, 
-            Value = new_value, 
-            Type = 'SecureString', 
-            KeyId = self.kms_key_id, 
-            Overwrite = True
-        )
