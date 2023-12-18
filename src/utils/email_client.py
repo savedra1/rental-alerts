@@ -1,7 +1,7 @@
 import smtplib
 import requests
 import json
-from aws_utils import AWSUtils
+from utils.aws_utils import AWSUtils
 
 # Email configuration
 def send_email(listings: str):# -> None:

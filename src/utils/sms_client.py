@@ -1,6 +1,6 @@
 from twilio.rest import Client
 
-from aws_utils import AWSUtils
+from utils.aws_utilsaws_utils import AWSUtils
         
 
 def send_sms(msg: str):# -> str:
