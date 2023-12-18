@@ -19,19 +19,22 @@ module "lambda" {
 }
 
 module "cloudwatch" {
-    source = "./cloudwatch"
+    source    = "./cloudwatch"
     func_name = "${module.lambda.func_name}"
-    func_arn = "${module.lambda.func_arn}"
+    func_arn  = "${module.lambda.func_arn}"
 }
 
 module "ssm" { # Requires environment vars passed in for twilio auth information
     source = "./ssm"
-    ssm_twilio_sid = var.SSM_TWILIO_SID
-    ssm_twilio_auth_key = var.SSM_TWILIO_AUTH_KEY
-    func_name = "${module.lambda.func_name}"
+    ssm_twilio_sid       = var.SSM_TWILIO_SID
+    ssm_twilio_auth_key  = var.SSM_TWILIO_AUTH_KEY
+    ssm_twilio_recipient = var.SSM_TWILIO_RECIPIENT
+    ssm_twilio_sender    = var.SSM_TWILIO_SENDER
+    atlassian_email_id   = var.ATLASSIAN_EMAIL_ID
+    func_name            = "${module.lambda.func_name}"
 }
 
-#####
+#########
 
 
 

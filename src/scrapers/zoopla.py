@@ -8,7 +8,9 @@ from utils.constants import ZOOPLA_HTML_EXTRACTION
 from utils.convert_date import zoopla_date_convert
 from utils.json_cleaner import clean_json
 
-from playwright.sync_api import sync_playwright
+#from playwright.sync_api import sync_playwright
+from selenium import webdriver 
+from selenium.webdriver.chrome.options import Options
 
 
 class Zoopla:
@@ -62,20 +64,23 @@ class Zoopla:
 
     def get_html_response(self) -> str | None:
         query_url = self.construct_url()
+        self.loger.info('Loading selenium webdriver...')
         try:
-            with sync_playwright() as p:
-                browser = p.chromium.launch()
-                context = browser.new_context(user_agent=self.agent)
-                page = context.new_page()
-                page.goto(query_url)
-                page.wait_for_load_state("load")
-                page_src = page.content()
+            options = Options()
+            options.binary_location = '/opt/headless-chromium'
+            options.add_argument('--headless')  # Run Chrome in headless mode
+            options.add_argument('--no-sandbox')
+            options.add_argument('--single-process')
+            options.add_argument('--disable-dev-shm-usage')
+            options.add_argument('--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36')
 
-            clean_src = str(page_src).replace('\\', '')
-            return clean_src
+            driver = webdriver.Chrome('/opt/chromedriver', chrome_options=options)
+            driver.get(query_url)
+            html_content = driver.page_source
+            return html_content
         
         except Exception as err:
-            self.logger.error(f'Playwright failed to return a valid HTML response from Zoopla:\n{err}')
+            self.logger.error(f'Selenium webdriver failed to return a valid HTML response from Zoopla:\n{err}')
             return None
 
     def get_todays_listings(self) -> list | None:

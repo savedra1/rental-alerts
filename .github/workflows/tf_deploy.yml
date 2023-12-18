@@ -2,6 +2,8 @@ name: Deploy Terraform
 
 on:
   push:
+    branches:
+      - main
     paths:
       - '**/*.tf'
       - 'src/**'
@@ -16,6 +18,9 @@ jobs:
       TF_VAR_S3_STATE_BUCKET_NAME: ${{ secrets.S3_STATE_BUCKET_NAME }}
       TF_VAR_SSM_TWILIO_SID: ${{ secrets.TWILIO_SID }}
       TF_VAR_SSM_TWILIO_AUTH_KEY: ${{ secrets.TWILIO_AUTH_TOKEN }}
+      TF_VAR_SSM_TWILIO_RECIPIENT: ${{ secrets.TWILIO_RECIPIENT }}
+      TF_VAR_SSM_TWILIO_SENDER: ${{ secrets.TWILIO_SENDER }}
+      TF_VAR_ATLASSIAN_EMAIL_ID: ${{ secrets.ATLASSIAN_EMAIL_ID }}
 
     steps:
       - name: Checkout Repository
@@ -45,9 +50,11 @@ jobs:
         run: |
           cd aws-infra
           terraform init -backend-config="bucket=tf-state-bucket-2213"
+      #terraform destroy -auto-approve
       
       - name: Apply Terraform
         run: |
           cd aws-infra
           terraform apply -auto-approve
+    
 
