@@ -84,11 +84,11 @@ class Zoopla:
             return None
 
     def get_todays_listings(self):# -> list | None:
-        html_response: str | None = self.get_html_response()
+        html_response: str = self.get_html_response()
         if not html_response:
             return None
         
-        properties_data: list | None = self.extract_data(html_response)
+        properties_data: list = self.extract_data(html_response)
         if not properties_data:
             return None
         
@@ -98,7 +98,7 @@ class Zoopla:
 
         for num, property in enumerate(properties_data, start=1):
             self.logger.info(f'{str(num)} | Property: {property["listingId"]} | Published: {property["lastPublishedDate"]}')
-            published_val_reformatted: str | None = zoopla_date_convert(property['publishedOn'])
+            published_val_reformatted: str = zoopla_date_convert(property['publishedOn'])
 
             if published_val_reformatted == today: #\ 'lastPublishDate' includes any updates so omitting this logic to ensure only new listings are added.
             #or published_val_reformatted == today: property['lastPublishedDate'].split('T')[0] == today

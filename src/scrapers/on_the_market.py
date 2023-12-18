@@ -40,7 +40,7 @@ class OnTheMarket():
         with get_requests_session() as web_session:
             response = web_session.get(query_url, headers=self.headers)
         
-        property_data: list | None = self.extract_data(response.text)
+        property_data: list = self.extract_data(response.text)
 
         if not property_data:
             return None
