@@ -8,7 +8,7 @@ from utils.web_session import get_requests_session
 class Rightmove():
     def __init__(self, logger, location, max_radius, min_bedroom, max_price):# -> None:
         self.logger = logger
-        self.region_id: str | None = self.get_region_code(location) 
+        self.region_id: str = self.get_region_code(location) 
         self.max_radius: str = max_radius
         self.min_bedrooms: str = min_bedroom
         self.max_price: str = max_price
