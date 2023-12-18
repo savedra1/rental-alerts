@@ -60,6 +60,7 @@ class Rightmove():
         if not properties:
             return None
         
+        self.logger.info(f'Rightmove properties found: {str(properties)}')
         today = datetime.now().strftime('20%y-%m-%d')
         todays_properties = []
         for num, property in enumerate(properties, start=1):

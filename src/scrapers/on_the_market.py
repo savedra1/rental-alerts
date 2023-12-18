@@ -45,6 +45,8 @@ class OnTheMarket():
         if not property_data:
             return None
         
+        self.logger.info(f'Rightmove properties found: {str(property_data)}')
+
         todays_listings = []
         for num, property in enumerate(property_data, start=1):
             if property.get('ad?'):
