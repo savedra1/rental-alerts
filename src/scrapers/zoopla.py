@@ -92,6 +92,7 @@ class Zoopla:
         if not properties_data:
             return None
         
+        self.logger.info(f'Zoopla properties found: {str(properties_data)}')
         today = datetime.now().strftime('20%y-%m-%d')
         todays_publications = []
 
