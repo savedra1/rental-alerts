@@ -86,7 +86,7 @@ class LambdaHandler():
         with open('resources/todays_properties.json', 'w') as f:
             json.dump({"publishedToday": updated_data}, f)
 
-    def clear_cache(self):# -> None:
+    def clear_cache(self) -> None:
         with open('resources/todays_properties.json', 'w') as f:
             json.dump({"publishedToday": []}, f)
 
