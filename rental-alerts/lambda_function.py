@@ -9,6 +9,8 @@ from scrapers.rightmove import Rightmove
 #from scrapers.zoopla import Zoopla
 from scrapers.on_the_market import OnTheMarket
 
+import boto3
+
 from utils.logger import set_up_logger, alert_admin
 from utils.sms_client import send_sms
 from utils.email_client import send_email, send_email_atlassian_server
@@ -19,6 +21,28 @@ def lambda_handler(event, context):
         'body': json.dumps({})
     }
     logger = set_up_logger()
+
+    data_to_pass = {
+        "key1": "value1",
+        "key2": "value2",
+        # Add more key-value pairs as needed
+    }
+
+    # Convert the data to JSON format
+    payload = json.dumps(data_to_pass)
+
+    # Trigger the second Lambda function
+    client = boto3.client('lambda')
+    response = client.invoke(
+        FunctionName='cf-bypass',
+        InvocationType='RequestResponse',
+        Payload=payload.encode('utf-8')  # Encode the JSON payload as bytes
+    )
+
+    # Process the response from the second Lambda function if needed
+    response_payload = response['Payload'].read().decode('utf-8')
+    print(response_payload)
+    return function_response
 
     try:
         handler = LambdaHandler(event, context, logger)
