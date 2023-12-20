@@ -9,6 +9,6 @@ resource "aws_lambda_function" "cf_bypass" {
   memory_size                    = 1000
   reserved_concurrent_executions = 1
   layers                         = [aws_lambda_layer_version.selenium_layer.arn, aws_lambda_layer_version.webdriver_layer.arn]
-  filename                       = "function_code.zip"
-  source_code_hash               = filebase64sha256("function_code.zip")
+  filename                       = "cf_bypass_function_code.zip"
+  source_code_hash               = filebase64sha256("cf_bypass_function_code.zip")
 }

@@ -3,7 +3,7 @@ name: Deploy Terraform
 on:
   push:
     branches:
-      - main
+      - dev
     paths:
       - '**/*.tf'
       - 'rentail-alerts/**'
@@ -35,7 +35,6 @@ jobs:
           cd ..
           zip -r aws-infra/python.zip ./python
           rm -rf ./python
-#stored in different path to avoid dupliacte python.zip files
 
       - name: Zip main function source code
         run: |
@@ -54,7 +53,7 @@ jobs:
           rm -rf python
       
       - name: Zip source code for cf-bypass function
-      - run: |
+        run: |
           cd cf-bypass
           zip -r ../aws-infra/cf_bypass_function_code.zip .
 
