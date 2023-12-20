@@ -6,7 +6,7 @@ on:
       - dev
     paths:
       - '**/*.tf'
-      - 'rentail-alerts/**'
+      - 'rental-alerts/**'
       - 'cf-bypass/**'
 
 jobs:

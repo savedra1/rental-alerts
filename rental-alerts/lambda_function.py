@@ -79,7 +79,7 @@ class LambdaHandler():
         all_properties: list = rm_properties + otm_properties  # zoopla_properties + otm_properties
         return all_properties
     
-    def update_cache(self, properties: list):# -> None:
+    def update_cache(self, properties: list) -> None:
         with open('resources/todays_properties.json', 'r') as f:
             current_data = json.load(f)
             updated_data = current_data['publishedToday'] + properties
