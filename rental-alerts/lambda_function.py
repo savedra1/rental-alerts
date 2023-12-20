@@ -66,7 +66,7 @@ class LambdaHandler():
 
         return location, max_radius, min_bedrooms, max_price
     
-    def get_new_listings(self):# -> list | None:
+    def get_new_listings(self) -> list | None:
         rm = Rightmove(self.logger, self.location, self.max_radius, self.min_bedrooms, self.max_price)
         rm_properties: list = rm.get_todays_listings()
 
