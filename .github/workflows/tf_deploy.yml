@@ -39,7 +39,7 @@ jobs:
       - name: Zip main function source code
         run: |
           cd rental-alerts
-          zip -r ../aws-infra/main_function_code.zip .n
+          zip -r ../aws-infra/main_function_code.zip .
       
 
       - name: Create function layer for cf-bypass function
