@@ -90,7 +90,7 @@ class LambdaHandler():
         with open('resources/todays_properties.json', 'w') as f:
             json.dump({"publishedToday": []}, f)
 
-    def run(self):# -> None:
+    def run(self) -> None:
         new_properties = self.get_new_listings()
         
         if not new_properties:
