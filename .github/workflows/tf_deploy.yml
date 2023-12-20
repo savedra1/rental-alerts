@@ -6,7 +6,8 @@ on:
       - main
     paths:
       - '**/*.tf'
-      - 'src/**'
+      - 'rentail-alerts/**'
+      - 'cf-bypass/**'
 
 jobs:
   deploy-terraform:
@@ -26,22 +27,36 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2 
 
-      - name: Create temporary dir for function layer # Needs to be called `python`
-        run: mkdir -p python
-
-      - name: Create function layer
+      - name: Create function layer for main func
         run: | 
+          mkdir -p python
           cd python
           pip install -r ../requirements.txt -t .
-          
-          ls -a
           cd ..
           zip -r aws-infra/python.zip ./python
+          rm -rf ./python
+#stored in different path to avoid dupliacte python.zip files
 
-      - name: Zip Function source
+      - name: Zip main function source code
         run: |
-          cd src
-          zip -r ../aws-infra/function_code.zip .
+          cd rental-alerts
+          zip -r ../aws-infra/main_function_code.zip .n
+      
+
+      - name: Create function layer for cf-bypass function
+        run: |
+          cd cf-bypass
+          mkdir -p python
+          cd python
+          pip install -r ../requirements.txt -t .
+          cd ..
+          zip -r ./python.zip ./python
+          rm -rf python
+      
+      - name: Zip source code for cf-bypass function
+      - run: |
+          cd cf-bypass
+          zip -r ../aws-infra/cf_bypass_function_code.zip .
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v1
@@ -49,7 +64,7 @@ jobs:
       - name: Initialise Terraform
         run: |
           cd aws-infra
-          terraform init -backend-config="bucket=tf-state-bucket-2213"
+          terraform init -backend-config="bucket=${{ secrets.S3_STATE_BUCKET_NAME }}"
       #terraform destroy -auto-approve
       
       - name: Apply Terraform
