@@ -4,7 +4,7 @@ resource "aws_lambda_function" "rental_alerts" {
   function_name                  = "rental-alerts"
   role                           = aws_iam_role.alerting_exec_role.arn
   handler                        = "lambda_function.lambda_handler"
-  runtime                        = "python3.10"
+  runtime                        = "python3.12"
   timeout                        = 900
   memory_size                    = 1000
   reserved_concurrent_executions = 1

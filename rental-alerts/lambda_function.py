@@ -65,7 +65,7 @@ def lambda_handler(event, context):
 
 
 class LambdaHandler():
-    def __init__(self, event, context, logger):# -> None:
+    def __init__(self, event, context, logger) -> None:
         self.event = event
         self.context = context
         self.logger = logger
