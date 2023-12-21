@@ -17,7 +17,7 @@ resource "aws_lambda_layer_version" "webdriver_layer" {
 # selenium layer for cf-bypass func
 resource "aws_lambda_layer_version" "selenium_layer" {
   filename            = "../cf-bypass/python.zip"
-  layer_name          = "selenium"
+  layer_name          = "browser-agent"
   compatible_runtimes = ["python3.7"]
   source_code_hash = filebase64sha256("../cf-bypass/python.zip")
 }
