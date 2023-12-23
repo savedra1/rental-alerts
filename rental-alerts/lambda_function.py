@@ -22,28 +22,6 @@ def lambda_handler(event, context):
     }
     logger = set_up_logger()
 
-    data_to_pass = {
-        "key1": "value1",
-        "key2": "value2",
-        # Add more key-value pairs as needed
-    }
-
-    # Convert the data to JSON format
-    payload = json.dumps(data_to_pass)
-
-    # Trigger the second Lambda function
-    client = boto3.client('lambda')
-    response = client.invoke(
-        FunctionName='cf-bypass',
-        InvocationType='RequestResponse',
-        Payload=payload.encode('utf-8')  # Encode the JSON payload as bytes
-    )
-
-    # Process the response from the second Lambda function if needed
-    response_payload = response['Payload'].read().decode('utf-8')
-    print(response_payload)
-    return function_response
-
     try:
         handler = LambdaHandler(event, context, logger)
         handler.run()
@@ -72,7 +50,7 @@ class LambdaHandler():
         self.location, self.max_radius, self.min_bdrooms, self.max_price = self.get_config()
     
     @staticmethod
-    def get_config():# -> (str, str, str, str):
+    def get_config() -> (str, str, str, str):
         with open('src/resources/config.json', 'r') as f:
             config_data: dict = json.load(f)
     
@@ -125,9 +103,9 @@ class LambdaHandler():
         for prop in new_properties:
             format_listings += f'{prop["url"]}\n\n'
 
-        send_sms(format_listings)
-        self.logger.info(f'Atlassian server mail response: {str(send_email_atlassian_server(format_listings))}')
-        #send_email(format_listings)
+        #send_sms(format_listings)
+        #self.logger.info(f'Atlassian server mail response: {str(send_email_atlassian_server(format_listings))}')
+        self.logger.info(f'Response when sending e,ail with Python smtplib client: {send_email(format_listings)}')
         self.logger.info(f'Twilio SMS alert response: {send_sms(format_listings)}')
 
         current_hour = datetime.now().strftime('%H')

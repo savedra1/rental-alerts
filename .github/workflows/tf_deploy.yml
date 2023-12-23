@@ -26,7 +26,7 @@ jobs:
 
       TF_VAR_SMTP_SENDER_EMAIL: ${{ secrets.SMPT_SENDER_EMAIL }}
       TF_VAR_SMTP_SENDER_KEY: ${{ secrets.SMPT_SENDER_KEY }}
-      TF_VAR_SMTP_RECIPIENT_EMAIL: ${{ secrets.SMPT_RECIPIENT_EMAIL }}
+      TF_VAR_SMTP_RECIPIENT_EMAIL: ${{ secrets.SMTP_RECIPIENT_EMAIL }}
 
     steps:
       - name: Checkout Repository
