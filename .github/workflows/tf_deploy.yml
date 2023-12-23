@@ -7,7 +7,6 @@ on:
     paths:
       - '**/*.tf'
       - 'rental-alerts/**'
-      - 'cf-bypass/**'
 
 jobs:
   deploy-terraform:
@@ -16,12 +15,18 @@ jobs:
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
+
       TF_VAR_S3_STATE_BUCKET_NAME: ${{ secrets.S3_STATE_BUCKET_NAME }}
       TF_VAR_SSM_TWILIO_SID: ${{ secrets.TWILIO_SID }}
       TF_VAR_SSM_TWILIO_AUTH_KEY: ${{ secrets.TWILIO_AUTH_TOKEN }}
       TF_VAR_SSM_TWILIO_RECIPIENT: ${{ secrets.TWILIO_RECIPIENT }}
       TF_VAR_SSM_TWILIO_SENDER: ${{ secrets.TWILIO_SENDER }}
+
       TF_VAR_ATLASSIAN_EMAIL_ID: ${{ secrets.ATLASSIAN_EMAIL_ID }}
+
+      TF_VAR_SMTP_SENDER_EMAIL: ${{ secrets.SMPT_SENDER_EMAIL }}
+      TF_VAR_SMTP_SENDER_KEY: ${{ secrets.SMPT_SENDER_KEY }}
+      TF_VAR_SMTP_RECIPIENT_EMAIL: ${{ secrets.SMPT_RECIPIENT_EMAIL }}
 
     steps:
       - name: Checkout Repository
@@ -31,7 +36,7 @@ jobs:
         run: | 
           mkdir -p python
           cd python
-          pip install -r ../rental-alerts/requirements.txt -t .
+          pip install -r ../requirements.txt -t .
           cd ..
           zip -r aws-infra/python.zip ./python
           rm -rf ./python
@@ -40,22 +45,6 @@ jobs:
         run: |
           cd rental-alerts
           zip -r ../aws-infra/main_function_code.zip .
-      
-
-      - name: Create function layer for cf-bypass function
-        run: |
-          cd cf-bypass
-          mkdir -p python
-          cd python
-          pip install -r ../requirements.txt -t .
-          cd ..
-          zip -r ./python.zip ./python
-          rm -rf python
-      
-      - name: Zip source code for cf-bypass function
-        run: |
-          cd cf-bypass
-          zip -r ../aws-infra/cf_bypass_function_code.zip .
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v1

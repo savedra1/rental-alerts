@@ -30,8 +30,12 @@ module "ssm" { # Requires environment vars passed in for twilio auth information
     ssm_twilio_auth_key  = var.SSM_TWILIO_AUTH_KEY
     ssm_twilio_recipient = var.SSM_TWILIO_RECIPIENT
     ssm_twilio_sender    = var.SSM_TWILIO_SENDER
+
     atlassian_email_id   = var.ATLASSIAN_EMAIL_ID
-    func_name            = "${module.lambda.func_name}"
+
+    smtp_sender_email    = var.SMTP_SENDER_EMAIL
+    smtp_sender_key      = var.SMTP_SENDER_KEY
+    smtp_recipient_email = var.SMTP_RECIPIENT_EMAIL
 }
 
 #########

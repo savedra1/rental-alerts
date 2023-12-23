@@ -1,69 +1,61 @@
 
-import cloudscraper
-import requests
 import json
 
+import json
+from time import sleep
 
 
-"""scraper = cloudscraper.create_scraper()  # returns a CloudScraper instance
-# Or: scraper = cloudscraper.CloudScraper()  # CloudScraper inherits from requests.Session
-print(scraper.get("https://www.zoopla.co.uk/to-rent/houses/london/?beds_max=2&price_frequency=per_month&price_max=600&property_sub_type=detached&property_sub_type=semi_detached&property_sub_type=terraced&q=London&radius=3&results_sort=newest_listings&search=to-rent"
-).status_code) """
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
-"""headers = {
-    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'
-}"""
+# Sender's email address and password
+sender_email = "awsuser2213@gmail.com"
+sender_password = "inlb qqcw ezqv udrv"
 
-"""response = requests.get('https://www.zoopla.co.uk/to-rent/houses/london/?beds_max=2&price_frequency=per_month&price_max=600&property_sub_type=detached&property_sub_type=semi_detached&property_sub_type=terraced&q=London&radius=3&results_sort=newest_listings&search_source=to-rent',
-                        headers = headers)"""
+# Recipient's email address
+recipient_email = "michaelsavedra@googlemail.com"
 
+# Message details
+subject = "Python Test"
+body = "Sent from NixOS"
 
-"""def make_req(cookies=None):
-    url = "https://www.zoopla.co.uk/to-rent/houses/london/?beds_max=2&price_frequency=per_month&price_max=600&property_sub_type=detached&property_sub_type=semi_detached&property_sub_type=terraced&q=London&radius=3&results_sort=newest_listings&search_source=to-rent"
+# Set up the MIMEText and MIMEMultipart objects
+message = MIMEMultipart()
+message.attach(MIMEText(body, 'plain'))
+message['Subject'] = subject
+message['From'] = sender_email
+message['To'] = recipient_email
 
-    # Payload parameters
-    payload = {
-        'beds_max': 2,
-        'price_frequency': 'per_month',
-        'price_max': 600,
-        'property_sub_type': ['detached', 'semi_detached', 'terraced'],
-        'q': 'London',
-        'radius': 3,
-        'results_sort': 'newest_listings',
-        'search_source': 'to-rent'
-    }
+# Establish a connection to the SMTP server
+with smtplib.SMTP('smtp.gmail.com', 587) as server:
+    server.starttls()  # Start a secure connection
+    server.login(sender_email, sender_password)  # Log in to the Gmail account
 
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36',
-        'Referer': 'https://www.google.com/',
-        'Sec-Ch-Ua': '"Google Chrome";v="119", "Chromium";v="119", "Not?A_Brand";v="24"',
-        'Sec-Ch-Ua-Mobile': '?0',
-        'Sec-Ch-Ua-Platform': '"Linux"',
-        'Sec-Fetch-Dest': 'document',
-        'Sec-Fetch-Mode': 'navigate',
-        'Sec-Fetch-Site': 'same-origin',
-        'Sec-Fetch-User': '?1',
-        'Upgrade-Insecure-Requests': '1',
-    }
-    if cookies:
-        response = requests.get(url, params=payload, headers=headers, cookies=cookies)
-    else:
-        response = requests.get(url, params=payload, headers=headers)
-    # Print the status code and content
-    #print("Status Code:", response.status_code)
-    #print("Response Content:", response.text)
+    # Send the email
+    response = server.sendmail(sender_email, recipient_email, message.as_string())
+    print(response)
 
-    print(response.cookies)
-
-cookies = make_req()
-#make_req(cookies)
-
-print('Updated4')"""
+print("Email sent successfully.")
 
 
-url = "https://www.zoopla.co.uk/to-rent/houses/london/?beds_max=2&price_frequency=per_month&price_max=600&property_sub_type=detached&property_sub_type=semi_detached&property_sub_type=terraced&q=London&radius=3&results_sort=newest_listings&search=to-rent"
+
+"""from playwright.sync_api import sync_playwright"""
 
 
+"""url = 'https://www.zoopla.co.uk/to-rent/houses/london/?beds_max=2&price_frequency=per_month&price_max=600&property_sub_type=detached&property_sub_type=semi_detached&property_sub_type=terraced&q=London&radius=3&results_sort=newest_listings&search=to-rent'
+
+with sync_playwright() as p:
+    browser = p.chromium.launch()
+    context = browser.new_context(user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3")
+    page = context.new_page()
+    page.goto(url)
+    html_source = page.content()
+    print(html_source)
+    browser.close()"""
+
+
+"""url = "https://www.zoopla.co.uk/to-rent/houses/london/?beds_max=2&price_frequency=per_month&price_max=600&property_sub_type=detached&property_sub_type=semi_detached&property_sub_type=terraced&q=London&radius=3&results_sort=newest_listings&search=to-rent"
 
 apikey = '425c7f0e256f581278ea86502ac1045e62b92e56'
 params = {
@@ -72,4 +64,9 @@ params = {
 	'js_render': 'true',
 }
 response = requests.get('https://api.zenrows.com/v1/', params=params)
-print(response.text)
+print(response.text)"""
+
+
+
+
+

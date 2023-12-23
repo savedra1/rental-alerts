@@ -6,4 +6,7 @@ variable "ssm_twilio_sender" {}
 
 variable "atlassian_email_id" {}
 
-variable "func_name" {}
+variable "smtp_sender_email" {}
+variable "smtp_sender_key" {}
+variable "smtp_recipient_email" {}
+
