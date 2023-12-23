@@ -34,10 +34,6 @@ variable "SMTP_SENDER_EMAIL"    {
   type        = string
 }
 
-variable "SMTP_SENDER_EMAIL"    {
-  type        = string
-}
-
 variable "SMTP_SENDER_KEY"      {
   type        = string
 }
