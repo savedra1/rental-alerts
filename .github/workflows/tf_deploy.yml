@@ -24,8 +24,8 @@ jobs:
 
       TF_VAR_ATLASSIAN_EMAIL_ID: ${{ secrets.ATLASSIAN_EMAIL_ID }}
 
-      TF_VAR_SMTP_SENDER_EMAIL: ${{ secrets.SMPT_SENDER_EMAIL }}
-      TF_VAR_SMTP_SENDER_KEY: ${{ secrets.SMPT_SENDER_KEY }}
+      TF_VAR_SMTP_SENDER_EMAIL: ${{ secrets.SMTP_SENDER_EMAIL }}
+      TF_VAR_SMTP_SENDER_KEY: ${{ secrets.SMTP_SENDER_KEY }}
       TF_VAR_SMTP_RECIPIENT_EMAIL: ${{ secrets.SMTP_RECIPIENT_EMAIL }}
 
     steps:
