@@ -46,19 +46,4 @@ jobs:
       id: plan
       run: |
         cd aws-infra
-        echo 'plan<<EOF' >> $GITHUB_OUTPUT
-        terraform plan -no-color -out=tfplan >> $GITHUB_OUTPUT
-        echo 'EOF' >> $GITHUB_OUTPUT
-        
-    - name: Comment Plan
-      id: comment-plan
-      uses: peter-evans/create-or-update-comment@v2
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        issue-number: ${{ github.event.pull_request.number }}
-        body: |
-          Terraform Plan:
-          ```
-          ${{ steps.plan.outputs.plan }}
-          ```
-          Merge this PR to apply these changes.
+        terraform plan
