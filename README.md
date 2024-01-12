@@ -227,7 +227,7 @@ If you don't intend to set up a CI pipeline and just want to spin up the resourc
 
 
 ### Maintainers
-[me](https://github.com/MichaelSavedra1)
+[Me](https://github.com/MichaelSavedra1)
 
 
 
