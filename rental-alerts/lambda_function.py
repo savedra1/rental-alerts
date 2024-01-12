@@ -105,7 +105,7 @@ class LambdaHandler():
 
         #send_sms(format_listings)
         #self.logger.info(f'Atlassian server mail response: {str(send_email_atlassian_server(format_listings))}')
-        self.logger.info(f'Response when sending e,ail with Python smtplib client: {send_email(format_listings)}')
+        self.logger.info(f'Response when sending email with Python smtplib client: {send_email(format_listings)}')
         self.logger.info(f'Twilio SMS alert response: {send_sms(format_listings)}')
 
         current_hour = datetime.now().strftime('%H')

@@ -19,7 +19,7 @@ class Rightmove():
     
     @staticmethod
     def get_region_code(location: str):# -> str:
-        with open ('src/resources/rightmove_location_codes.json', 'r') as f:
+        with open ('resources/rightmove_location_codes.json', 'r') as f:
             json_data = json.load(f)
         
         return json_data.get(location.lower(), None)
