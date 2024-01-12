@@ -1,9 +1,9 @@
 """
-Main lambda function code for project
-_____________________________________
-
-Author: Michael S
-Date: 2023-12-15
+Main lambda function code for project |
+_____________________________________ |
+                                      |
+Author: Michael S                     |
+Date: 2023-12-15                      |
 """
 
 import sys

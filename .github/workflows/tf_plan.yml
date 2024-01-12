@@ -16,6 +16,7 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
 
       TF_VAR_S3_STATE_BUCKET_NAME: ${{ secrets.S3_STATE_BUCKET_NAME }}
+
       TF_VAR_SSM_TWILIO_SID: ${{ secrets.TWILIO_SID }}
       TF_VAR_SSM_TWILIO_AUTH_KEY: ${{ secrets.TWILIO_AUTH_TOKEN }}
       TF_VAR_SSM_TWILIO_RECIPIENT: ${{ secrets.TWILIO_RECIPIENT }}
@@ -32,7 +33,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
     - name: Create function layer for main func
       run: | 
         mkdir -p python
@@ -41,21 +41,17 @@ jobs:
         cd ..
         zip -r aws-infra/python.zip ./python
         rm -rf ./python
-
       - name: Zip main function source code
         run: |
           cd rental-alerts
           zip -r ../aws-infra/main_function_code.zip .
-
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v1
-    
     - name: Terraform init
       id: init
       run: |
         cd aws-infra
         terraform init -backend-config="bucket=${{ secrets.S3_STATE_BUCKET_NAME }}"
-        
     - name: Run terraform plan
       id: plan
       run: |
