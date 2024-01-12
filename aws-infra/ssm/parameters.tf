@@ -29,4 +29,21 @@ resource "aws_ssm_parameter" "atlassian_id" {
   value = var.atlassian_email_id
 }
 
+resource "aws_ssm_parameter" "smtp_sender_email" {
+  name  = "/smtp/sender_email"
+  type  = "SecureString"
+  value = var.smtp_sender_email 
+}
+
+resource "aws_ssm_parameter" "smtp_sender_key" {
+  name  = "/smtp/sender_key"
+  type  = "SecureString"
+  value = var.smtp_sender_key
+}
+
+resource "aws_ssm_parameter" "smtp_recipient_email" {
+  name  = "/smtp/recipient_email"
+  type  = "SecureString"
+  value = var.smtp_recipient_email
+}
 

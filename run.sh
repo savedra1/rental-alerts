@@ -1,1 +1,5 @@
-sudo docker rmi -f temp && sudo docker build -t temp . && sudo docker run temp
+sudo docker rmi -f tmp.py && sudo docker build -t tmp.py . && sudo docker run tmp.py
+
+
+
+

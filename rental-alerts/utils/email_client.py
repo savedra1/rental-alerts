@@ -1,29 +1,45 @@
-import smtplib
 import requests
 import json
 from utils.aws_utils import AWSUtils
 
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
 # Email configuration
-def send_email(listings: str):# -> None:
-    sender_email = ""
-    receiver_email = ""
-    subject = "Subject of the email"
-    body = "Body of the email"
+def send_email(listings: str) -> str:
+    """This function requires a GMAIL email acocunt
+        with an app password as auth. """
+    awsu = AWSUtils()
 
-    smtp_server = "smtp.gmail.com"
-    smtp_username = ""
-    smtp_password = ""
+    sender_email    =  awsu.get_api_password('/smtp/sender_email')
+    sender_password = awsu.get_api_password('/smtp/sender_key')
+    recipient_email = awsu.get_api_password('/smtp/recipient_email')
+    subject         = "NEW LISTINGS ADDED"
+    body            = listings
 
-    message = f"Subject: {subject}\n\n{listings}"
+    try:
+        message = MIMEMultipart()
+        message.attach(MIMEText(body, 'plain'))
+        message['Subject'] = subject
+        message['From'] = sender_email
+        message['To'] = recipient_email
 
-    server = smtplib.SMTP("smtp.gmail.com", 587)
-    server.ehlo()
-    server.starttls()
-    server.login(smtp_username, smtp_password)
-    server.sendmail(sender_email, receiver_email, message)
-    server.close()
+        with smtplib.SMTP('smtp.gmail.com', 587) as server:
+            server.starttls()  # Start a secure connection
+            server.login(sender_email, sender_password)  # Log in to the Gmail account
 
-def send_email_atlassian_server(listings):# -> int:
+            response = server.sendmail(sender_email, recipient_email, message.as_string())
+            print(response)
+
+        return "Email sent successfully."
+    
+    except Exception as err:
+        return err
+
+
+def send_email_atlassian_server(listings) -> int:
+    """secondary method of ending an email utilising an atlassian AFJ"""
     response = requests.post(
         AWSUtils().get_api_password('atlassian/email_id'),
         headers = {

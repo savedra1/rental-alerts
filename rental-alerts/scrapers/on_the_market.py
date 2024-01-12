@@ -18,7 +18,7 @@ class OnTheMarket():
             'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'
         }
     
-    def construct_url(self):# -> str:
+    def construct_url(self) -> str:
         return f'{self.base_url}{self.min_bedrooms}-bed-property/{self.location}/?max-price={self.max_price}&radius={self.max_radius}'
 
     def extract_data(self, html_string: str) -> list | None:
@@ -34,7 +34,7 @@ class OnTheMarket():
             self.logger.error(f'Failed to extract property list from OTM\' HTML response:\n{err}' )
             return None
 
-    def get_todays_listings(self):
+    def get_todays_listings(self) -> list:
         query_url = self.construct_url()
         
         with get_requests_session() as web_session:

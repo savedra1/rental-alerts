@@ -9,6 +9,8 @@ from scrapers.rightmove import Rightmove
 #from scrapers.zoopla import Zoopla
 from scrapers.on_the_market import OnTheMarket
 
+import boto3
+
 from utils.logger import set_up_logger, alert_admin
 from utils.sms_client import send_sms
 from utils.email_client import send_email, send_email_atlassian_server
@@ -41,15 +43,15 @@ def lambda_handler(event, context):
 
 
 class LambdaHandler():
-    def __init__(self, event, context, logger):# -> None:
+    def __init__(self, event, context, logger) -> None:
         self.event = event
         self.context = context
         self.logger = logger
         self.location, self.max_radius, self.min_bdrooms, self.max_price = self.get_config()
     
     @staticmethod
-    def get_config():# -> (str, str, str, str):
-        with open('src/resources/config.json', 'r') as f:
+    def get_config() -> (str, str, str, str):
+        with open('resources/config.json', 'r') as f:
             config_data: dict = json.load(f)
     
         for key, val in config_data.items():
@@ -66,7 +68,7 @@ class LambdaHandler():
 
         return location, max_radius, min_bedrooms, max_price
     
-    def get_new_listings(self):# -> list | None:
+    def get_new_listings(self) -> list | None:
         rm = Rightmove(self.logger, self.location, self.max_radius, self.min_bedrooms, self.max_price)
         rm_properties: list = rm.get_todays_listings()
 
@@ -79,18 +81,18 @@ class LambdaHandler():
         all_properties: list = rm_properties + otm_properties  # zoopla_properties + otm_properties
         return all_properties
     
-    def update_cache(self, properties: list):# -> None:
+    def update_cache(self, properties: list) -> None:
         with open('resources/todays_properties.json', 'r') as f:
             current_data = json.load(f)
             updated_data = current_data['publishedToday'] + properties
         with open('resources/todays_properties.json', 'w') as f:
             json.dump({"publishedToday": updated_data}, f)
 
-    def clear_cache(self):# -> None:
+    def clear_cache(self) -> None:
         with open('resources/todays_properties.json', 'w') as f:
             json.dump({"publishedToday": []}, f)
 
-    def run(self):# -> None:
+    def run(self) -> None:
         new_properties = self.get_new_listings()
         
         if not new_properties:
@@ -101,9 +103,9 @@ class LambdaHandler():
         for prop in new_properties:
             format_listings += f'{prop["url"]}\n\n'
 
-        send_sms(format_listings)
-        self.logger.info(f'Atlassian server mail response: {str(send_email_atlassian_server(format_listings))}')
-        #send_email(format_listings)
+        #send_sms(format_listings)
+        #self.logger.info(f'Atlassian server mail response: {str(send_email_atlassian_server(format_listings))}')
+        self.logger.info(f'Response when sending e,ail with Python smtplib client: {send_email(format_listings)}')
         self.logger.info(f'Twilio SMS alert response: {send_sms(format_listings)}')
 
         current_hour = datetime.now().strftime('%H')
@@ -114,7 +116,7 @@ class LambdaHandler():
         
         self.update_cache(new_properties)
 
-
+# ####
 
     
     
