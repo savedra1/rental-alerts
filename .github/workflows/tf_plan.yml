@@ -34,13 +34,13 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Create function layer for main func
-        run: | 
-          mkdir -p python
-          cd python
-          pip install -r ../requirements.txt -t .
-          cd ..
-          zip -r aws-infra/python.zip ./python
-          rm -rf ./python
+      run: | 
+        mkdir -p python
+        cd python
+        pip install -r ../requirements.txt -t .
+        cd ..
+        zip -r aws-infra/python.zip ./python
+        rm -rf ./python
 
       - name: Zip main function source code
         run: |
