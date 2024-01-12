@@ -107,7 +107,7 @@ class Zoopla:
             if published_val_reformatted == today: #\ 'lastPublishDate' includes any updates so omitting this logic to ensure only new listings are added.
             #or published_val_reformatted == today: property['lastPublishedDate'].split('T')[0] == today
                 todays_publications.append({
-                    'id': property['listingId'],
+                    'id': str(property['listingId']),
                     'url': f'https://zoopla.co.uk{property["listingUris"]["detail"]}',
                     'price': property['price'],
                     'listed_date': property['publishedOn']

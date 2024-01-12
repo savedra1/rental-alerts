@@ -68,7 +68,7 @@ class Rightmove():
             if property['addedOrReduced'].lower() == 'added today'\
             or property['firstVisibleDate'].split('T')[0] == today: 
                 todays_properties.append({
-                    'id': property['id'],
+                    'id': str(property['id']),
                     'url': f'https://rightmove.co.uk{property["propertyUrl"]}',
                     'price': property['price']['amount'],
                     'listed_date': property['addedOrReduced']

@@ -126,7 +126,7 @@ class LambdaHandler():
             self.clear_cache()
             return
         
-        cache_updated = self.update_cache([str(prop['id']) for prop in new_properties])
+        cache_updated = self.update_cache([prop['id'] for prop in new_properties])
         if cache_updated:
             self.logger.info('Execution completed successfully.')
         else:

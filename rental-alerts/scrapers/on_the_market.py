@@ -55,7 +55,7 @@ class OnTheMarket():
 
             if property['days-since-added-reduced'].split(' ')[1] == 'today':
                 todays_listings.append({
-                    'id': property['id'],
+                    'id': str(property['id']),
                     'url': f'https://onthemarket.com{property["property-link"]}',
                     'price': property['price'],
                     'listed_date': property['days-since-added-reduced'].split(' ')[1]
