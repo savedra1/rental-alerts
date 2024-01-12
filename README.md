@@ -36,7 +36,7 @@ Required environment variable definitions:
 ### Remote CI deployment
 If you'd like to set this up for your yourself with the same CI setup as myself, where the Terraform actions are all taken in Github Actions: 
 
-1. Clone this repo from the root folder
+1. Clone this repo from the root folder with `git clone https://github.com/savedra1/rental-alerts.git`
 
 2. Create an AWS user with the following permissions:
     ```
@@ -198,7 +198,7 @@ If you don't intend to set up a CI pipeline and just want to spin up the resourc
 
 4. Add your rental preferences to the `rental-alerts/resourcesconfig.json` file.
 
-5. Clone this github repo from the root folder to your local machine using `git clone <repo url>`. 
+5. Clone this github repo from the root folder to your local machine using `git clone https://github.com/savedra1/rental-alerts`. 
 
 6. In your terminal, move into the `aws-infra` folder from the root directory with `cd aws-infra`.
 
