@@ -6,7 +6,6 @@ on:
       - main
     paths:
       - '**/*.tf'
-      - 'rental-alerts/**'
 
 jobs:
   plan-tf:
@@ -27,8 +26,6 @@ jobs:
       TF_VAR_SMTP_SENDER_KEY: ${{ secrets.SMTP_SENDER_KEY }}
       TF_VAR_SMTP_RECIPIENT_EMAIL: ${{ secrets.SMTP_RECIPIENT_EMAIL }}
 
-      TF_IN_AUTOMATION: "True"
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -46,19 +43,4 @@ jobs:
       id: plan
       run: |
         cd aws-infra
-        echo 'plan<<EOF' >> $GITHUB_OUTPUT
-        terraform plan -no-color -out=tfplan >> $GITHUB_OUTPUT
-        echo 'EOF' >> $GITHUB_OUTPUT
-        
-    - name: Comment Plan
-      id: comment-plan
-      uses: peter-evans/create-or-update-comment@v2
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        issue-number: ${{ github.event.pull_request.number }}
-        body: |
-          Terraform Plan:
-          ```
-          ${{ steps.plan.outputs.plan }}
-          ```
-          Merge this PR to apply these changes.
+        terraform plan
