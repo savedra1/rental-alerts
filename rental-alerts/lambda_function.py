@@ -114,6 +114,8 @@ class LambdaHandler():
         format_listings = f'New listings as of {datetime.now()}:\n\n'
         for prop in new_properties:
             format_listings += f'{prop["url"]}\n\n'
+        
+        self.logger.info(format_listings)
 
         self.logger.info(f'Response when sending email with Python smtplib client: {send_email(format_listings)}')
         self.logger.info(f'Twilio SMS alert response: {send_sms(format_listings)}')
@@ -124,7 +126,7 @@ class LambdaHandler():
             self.clear_cache()
             return
         
-        cache_updated = self.update_cache([prop['id'] for prop in new_properties])
+        cache_updated = self.update_cache([str(prop['id']) for prop in new_properties])
         if cache_updated:
             self.logger.info('Execution completed successfully.')
         else:

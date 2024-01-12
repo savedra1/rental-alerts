@@ -13,7 +13,6 @@ class AWSUtils:
             Name = parameter_name, 
             WithDecryption = True
         )
-
         api_password = response['Parameter']['Value']
 
         return api_password
@@ -28,3 +27,4 @@ class AWSUtils:
             Type = 'SecureString', 
             Overwrite = True
         )
+        
