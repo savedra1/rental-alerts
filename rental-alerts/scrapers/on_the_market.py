@@ -5,7 +5,6 @@ import json
 from utils.web_session import get_requests_session
 from utils.constants import OTM_HTML_EXTRACTION
 
-
 class OnTheMarket():
     def __init__(self, logger, location, max_radius, min_bedrooms, max_price):# -> None:
         self.logger = logger

@@ -12,9 +12,9 @@ def send_email(listings: str) -> str:
         with an app password as auth. """
     awsu = AWSUtils()
 
-    sender_email    =  awsu.get_api_password('/smtp/sender_email')
-    sender_password = awsu.get_api_password('/smtp/sender_key')
-    recipient_email = awsu.get_api_password('/smtp/recipient_email')
+    sender_email    = awsu.get_parameter('/smtp/sender_email')
+    sender_password = awsu.get_parameter('/smtp/sender_key')
+    recipient_email = awsu.get_parameter('/smtp/recipient_email')
     subject         = "NEW LISTINGS ADDED"
     body            = listings
 
@@ -41,7 +41,7 @@ def send_email(listings: str) -> str:
 def send_email_atlassian_server(listings) -> int:
     """secondary method of ending an email utilising an atlassian AFJ"""
     response = requests.post(
-        AWSUtils().get_api_password('atlassian/email_id'),
+        AWSUtils().get_parameter('atlassian/email_id'),
         headers = {
             "Content-Type": "application/json"
         },
