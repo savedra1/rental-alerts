@@ -1,3 +1,6 @@
+"""
+Constants to be shared throughout all project files.
+"""
 
 MONTH_FORMATS = { # can be used to easily reformat date structures returned in HTML
     'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04',
