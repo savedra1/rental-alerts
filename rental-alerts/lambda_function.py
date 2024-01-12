@@ -38,9 +38,9 @@ def lambda_handler(event, context):
             'stackTrace': str(traceback_string)
         } )
         logger.error(err_msg)
-        alert_admin(err_msg)
+        logger.info(f'Response when sending error alert to admin: {alert_admin(err_msg)}')
         function_response['statusCode'] = 500
-        function_response['body'] = str(err)
+        function_response['body'] = str(err_msg)
 
 
 class LambdaHandler():
@@ -121,7 +121,7 @@ class LambdaHandler():
         self.logger.info(f'Twilio SMS alert response: {send_sms(format_listings)}')
 
         current_hour: str = datetime.now().strftime('%H')
-        if int(current_hour) >= 12:
+        if int(current_hour) >= 21:
             self.logger.info('Clearning today\'s history...')
             self.clear_cache()
             return

@@ -3,7 +3,7 @@ name: Deploy Terraform
 on:
   push:
     branches:
-      - dev
+      - main
     paths:
       - '**/*.tf'
       - 'rental-alerts/**'

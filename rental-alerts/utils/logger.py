@@ -1,5 +1,6 @@
 
 import logging
+from utils.email_client import send_email
 
 def set_up_logger() -> logging:
     logger = logging.getLogger()
@@ -7,5 +8,6 @@ def set_up_logger() -> logging:
 
     return logger
 
-def alert_admin(err=None):
-    pass
+def alert_admin(err_msg) -> str:
+    response = send_email(err_msg, subject='AN ERROR OCURRED WHEN FETCHING NEW PROPERTY DATA.')
+    return response
