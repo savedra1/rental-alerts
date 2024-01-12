@@ -2,10 +2,10 @@
 Finding the right place to rent in any major Uk city is becoming more and more difficult due to the constantly rising prices and demand. To (very slightly) help the situation I've built this Terraform/AWS project that will send live updates for any new listings posted on the popular property websites. As opposed to signing up for any official property alerts, this approach centralises alerting from multiple listing sources, is completely free of cost, allows for SMS alerting and allows continuous integration on the fly whenever updates are needed. I thought I'd make this repo public in case anyone out there can also benefit. Was a great learning project to consolidate some terraform and AWS knowledge. 
 
 ## How it works
-When the source code is executed, Terraform will create an AWS Lambda function with a scheduled EventBridge cron trigger. The code added to the Lambda function will crawl through the specified listing sites looking for property data that matches the requirements in the project's `config.json` file. When new properties (posted on the day of execution) are found and have not already been processed for that day, they will be sent via email and SMS to the user email that was specified as the recipient. The CI workflow (GitHub Actions) allows for easy updates to the config parameters and enables for new scrapers to be implemented with ease.
+When the source code is executed, Terraform will create an AWS Lambda function with a scheduled EventBridge cron trigger. The code added to the Lambda function will crawl through the specified listing sites looking for property data that matches the requirements in the project's `config.json` file. When new properties (posted on the day of execution) are found and have not already been processed for that day, they will be sent via email and SMS to the user email that was specified as the recipient. The CI workflow (GitHub Actions) allows for easy updates to the config parameters and enables new scrapers to be implemented with ease.
 
 ### Limitations
-Certain listing sites that use Cloudflare are difficult to access form a serverless environment. For example the page source data can be retreived locally for `https://zoopla.co.uk` using a browser client like `selenium` or `playwrite`, however when the same approach is attempted from an AWS ECR image/raw lambda function it gets blocked due to the traffic being associated with an AWS environemnt. Client libraries such as `cloudscraper` all now seem to be outdated for this also. i would recommend using a custom proxy server or applying for an official API key to use these services in this context instead. 
+Certain listing sites that use Cloudflare are difficult to access form a serverless environment. For example the page source data can be retreived locally for `https://zoopla.co.uk` using a browser client like `selenium` or `playwrite`, however when the same approach is attempted from an AWS ECR image/raw lambda function it gets blocked due to the traffic being associated with an AWS environemnt. Client libraries such as `cloudscraper` all now seem to be outdated for this also. I would recommend using a custom proxy server or applying for an official API key to use these services in this context instead. 
 
 ## Getting started 
 Dependencies:
@@ -36,7 +36,7 @@ Required environment variable definitions:
 ### Remote CI deployment
 If you'd like to set this up for your yourself with the same CI setup as myself, where the Terraform actions are all taken in Github Actions: 
 
-1. Clone this repo from the root folder with `git clone https://github.com/savedra1/rental-alerts.git`
+1. Clone this repo from the root folder with `git clone https://github.com/savedra1/rental-alerts.git`.
 
 2. Create an AWS user with the following permissions:
     ```
@@ -91,9 +91,9 @@ If you'd like to set this up for your yourself with the same CI setup as myself,
         ]
     }
     ```
-    _Note: Be aware this AWS user will be fairly priviledges so be careful when saving their AWS access key and secret key. It's also recommended to add these permissions to a an IAM group which the user can then be added to rather than to the user directly._
+    _Note: Be aware this AWS user will be fairly priviledges so be careful when saving their AWS access key and secret key. It's also recommended to add these permissions to an IAM group which the user can then be added to rather than to the user directly._
 
-3. Create an AWS s3 bucket manually with a folder called inside the bucket called `dev`. Also ensure the egion set in the project's `/aws-infra/main.tf` is correct. E.g: 
+3. Create an AWS s3 bucket manually with a folder called inside the bucket called `dev`. Also ensure the region set in the project's `/aws-infra/main.tf` is correct. E.g: 
     ```
     terraform {
         backend "s3" {
@@ -105,9 +105,9 @@ If you'd like to set this up for your yourself with the same CI setup as myself,
 
     ```
 
-4. Add your rental preferences to the `rental-alerts/resourcesconfig.json` file
+4. Add your rental preferences to the `rental-alerts/resourcesconfig.json` file.
 
-5. Create your own private repo in GitHub and set that as the new remote origin for your local clone with `git remote set-url origin https://github.com/you/your-repo.git`
+5. Create your own private repo in GitHub and set that as the new remote origin for your local clone with `git remote set-url origin https://github.com/you/your-repo.git`.
 
 6. Add the following environemnt secrets to your Github repo:
     - AWS_ACCESS_KEY *
@@ -121,7 +121,7 @@ If you'd like to set this up for your yourself with the same CI setup as myself,
     - TWILIO_SENDER _(optional)_
     - TWILIO_SID _(optional)_
 
-7. Make sure the default branch in your Github repo is named `main`
+7. Make sure the default branch in your Github repo is named `main`.
 
 8. Push your changes to the main branch, triggering the Github actions workflow. Once this has completed the build, you can log back into the AWS console to spot check and test the newly created Lambda function. 
 
@@ -227,7 +227,7 @@ If you don't intend to set up a CI pipeline and just want to spin up the resourc
 
 
 ### Maintainers
-[Me](https://github.com/MichaelSavedra1)
+[me](https://github.com/savedra1)
 
 
 
