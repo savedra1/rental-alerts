@@ -13,7 +13,7 @@ import boto3
 
 from utils.logger import set_up_logger, alert_admin
 from utils.sms_client import send_sms
-from utils.email_client import send_email, send_email_atlassian_server
+from utils.email_client import send_email #send_email_atlassian_server
 
 def lambda_handler(event, context):
     function_response = {
@@ -47,7 +47,7 @@ class LambdaHandler():
         self.event = event
         self.context = context
         self.logger = logger
-        self.location, self.max_radius, self.min_bdrooms, self.max_price = self.get_config()
+        self.location, self.max_radius, self.min_bedrooms, self.max_price = self.get_config()
     
     @staticmethod
     def get_config() -> (str, str, str, str):

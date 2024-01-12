@@ -53,11 +53,10 @@ jobs:
         run: |
           cd aws-infra
           terraform init -backend-config="bucket=${{ secrets.S3_STATE_BUCKET_NAME }}"
-          terraform destroy -auto-approve
+    #terraform destroy -auto-approve
       
       - name: Apply Terraform
         run: |
           cd aws-infra
           terraform apply -auto-approve
     
-
