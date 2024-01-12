@@ -38,7 +38,7 @@ module "ssm" { # Requires environment vars passed in for twilio auth information
     smtp_recipient_email = var.SMTP_RECIPIENT_EMAIL
 }
 
-#######
+######
 
 
 

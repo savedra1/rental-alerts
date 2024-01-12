@@ -103,6 +103,7 @@ class LambdaHandler():
         
     def run(self) -> None:
         todays_listings_cache: str = self.awsu.get_parameter('/rental_alerts/daily_cache')
+        self.logger.info(f'Currently in cache: {todays_listings_cache}')
         properties: list = self.get_new_listings()
 
         new_properties = [prop for prop in properties if prop['id'] not in todays_listings_cache]

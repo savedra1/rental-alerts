@@ -26,7 +26,7 @@ jobs:
       TF_VAR_SMTP_SENDER_EMAIL: ${{ secrets.SMTP_SENDER_EMAIL }}
       TF_VAR_SMTP_SENDER_KEY: ${{ secrets.SMTP_SENDER_KEY }}
       TF_VAR_SMTP_RECIPIENT_EMAIL: ${{ secrets.SMTP_RECIPIENT_EMAIL }}
-      
+
       TF_IN_AUTOMATION: "True"
 
     steps:
@@ -39,13 +39,13 @@ jobs:
     - name: Terraform init
       id: init
       run: |
-        cd filters
+        cd aws-infra
         terraform init -backend-config="bucket=${{ secrets.S3_STATE_BUCKET_NAME }}"
         
     - name: Run terraform plan
       id: plan
       run: |
-        cd filters
+        cd aws-infra
         echo 'plan<<EOF' >> $GITHUB_OUTPUT
         terraform plan -no-color -out=tfplan >> $GITHUB_OUTPUT
         echo 'EOF' >> $GITHUB_OUTPUT
