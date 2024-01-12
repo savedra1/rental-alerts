@@ -19,7 +19,7 @@ Certain rental sites that use Cloudflare are difficult to access from a serverle
 - Twilio details (optional) can be generated for free [here](https://www.twilio.com/en-us/messaging/channels/sms?utm_source=google&utm_medium=cpc&utm_term=mass%20messaging%20system&utm_campaign=G_S_EMEA_NB_SMS_T1_EN_NV&cq_plac=&cq_net=g&cq_pos=&cq_med=&cq_plt=gp&gad_source=1&gclid=CjwKCAiA44OtBhAOEiwAj4gpOdUQUIqd9zgYif9rIvFVnoGPH_sx3xBoQAw3BSbtaBB1KdbKeoTavhoCkRQQAvD_BwE) but may need updating periodically to avoid having to spend money.
 - Code for any additional sites you'd like to scrape can be added to the `rental-alerts/scrapers` directory on an ad-hoc basis.
 - The cron schedule in use can be found in `aws-infra/cloudwatchevent_rule.tf` and can be updated there as and when. 
-- If the developers of the sites being scraped make any changes this may break the project and you will be notified of thi by email only. This will require pulling the page source manually (making use of the `.local-dev` resources where necessary) and updating the `rental-alerts/utils/constants.py` file with new page separators in order to extract the property information. 
+- If the developers of the sites being scraped make any changes this may break the project and you will be notified of this by email only. This will require pulling the page source manually (making use of the `.local-dev` resources where necessary) and updating the `rental-alerts/utils/constants.py` file with new page separators in order to extract the property information. 
 
 **Required environment variable definitions**:
 - *AWS_ACCESS_KEY*: _The AWS access key for your AWS service account user._
@@ -90,9 +90,9 @@ Certain rental sites that use Cloudflare are difficult to access from a serverle
         ]
     }
     ```
-    _Note: Be aware this AWS user will be fairly priviledges so be careful when saving their AWS access key and secret key. It's also recommended to add these permissions to an IAM group which the user can then be added to rather than to the user directly._
+    _Be aware this AWS user will be fairly priviledged so be careful when saving their AWS access key and secret key. It's also recommended to add these permissions to an IAM group which the user can then be added to rather than to the user directly._
 
-3. Create an AWS s3 bucket manually with a folder called inside the bucket called `dev`. Also ensure the region set in the project's `/aws-infra/main.tf` is correct. E.g: 
+3. Create an AWS s3 bucket manually with a folder inside the bucket called `dev`. Also ensure the region set in the project's `/aws-infra/main.tf` is correct. E.g: 
     ```
     provider "aws" {
         region = "eu-west-1"
@@ -127,7 +127,7 @@ If you'd like to set this up with the same CI pipeline as myself, where the Terr
     - TWILIO_SENDER _(optional)_
     - TWILIO_SID _(optional)_
 
-3. Make sure the default branch in your Github repo is named `main`.
+3. Make sure the default branch in your remote Github repo is named `main`.
 
 4. Push your changes to the main branch, triggering the Github actions workflow. Once this has completed the build, you can log back into the AWS console to spot-check and test the newly created Lambda function. 
 
