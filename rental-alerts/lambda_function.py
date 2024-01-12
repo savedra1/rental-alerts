@@ -51,7 +51,7 @@ class LambdaHandler():
     
     @staticmethod
     def get_config() -> (str, str, str, str):
-        with open('src/resources/config.json', 'r') as f:
+        with open('resources/config.json', 'r') as f:
             config_data: dict = json.load(f)
     
         for key, val in config_data.items():
