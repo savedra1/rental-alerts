@@ -83,14 +83,24 @@ class LambdaHandler():
         all_properties: list = rm_properties + otm_properties  # zoopla_properties + otm_properties
         return all_properties
     
-    def update_cache(self, properties: list) -> None:
-        current_data: str = self.awsu.get_parameter('/rental_alerts/daily_cache')
-        updated_data = current_data + str(properties)
-        self.awsu.update_parameter('/rental_alerts/daily_cache', str(updated_data))
+    def update_cache(self, properties: list) -> bool:
+        try:
+            current_data: str = self.awsu.get_parameter('/rental_alerts/daily_cache')
+            updated_data = current_data + str(properties)
+            self.awsu.update_parameter('/rental_alerts/daily_cache', str(updated_data))
+            return True
+        except Exception as err:
+            self.logger.error(err)
+            return False
 
-    def clear_cache(self) -> None:
-        self.awsu.update_parameter('/rental_alerts/daily_cache', '[]')
-
+    def clear_cache(self) -> bool:
+        try:
+            self.awsu.update_parameter('/rental_alerts/daily_cache', '[]')
+            return True
+        except Exception as err:
+            self.logger.error(err)
+            return False
+        
     def run(self) -> None:
         todays_listings_cache: str = self.awsu.get_parameter('/rental_alerts/daily_cache')
         properties: list = self.get_new_listings()
@@ -114,7 +124,11 @@ class LambdaHandler():
             self.clear_cache()
             return
         
-        self.update_cache([property['id'] for property in new_properties])
+        cache_updated = self.update_cache([prop['id'] for prop in new_properties])
+        if cache_updated:
+            self.logger.info('Execution completed successfully.')
+        else:
+            self.logger.error('Execution completed but failed to update property cache.')
 
 # ####
 
