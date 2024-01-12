@@ -33,6 +33,20 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Create function layer for main func
+        run: | 
+          mkdir -p python
+          cd python
+          pip install -r ../requirements.txt -t .
+          cd ..
+          zip -r aws-infra/python.zip ./python
+          rm -rf ./python
+
+      - name: Zip main function source code
+        run: |
+          cd rental-alerts
+          zip -r ../aws-infra/main_function_code.zip .
+
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v1
     

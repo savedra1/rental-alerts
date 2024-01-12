@@ -38,17 +38,3 @@ def send_email(listings, subject="NEW LISTINGS ADDED") -> str:
     except Exception as err:
         return err
 
-
-
-def send_email_atlassian_server(listings) -> int:
-    """secondary method of ending an email utilising an atlassian AFJ"""
-    response = requests.post(
-        AWSUtils().get_parameter('atlassian/email_id'),
-        headers = {
-            "Content-Type": "application/json"
-        },
-        data = json.dumps({
-            'listings': listings
-        })
-    )
-    return response.status_code

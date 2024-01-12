@@ -1,3 +1,10 @@
+"""
+Main lambda function code for project
+_____________________________________
+
+Author: Michael S
+Date: 2023-12-15
+"""
 
 import sys
 import traceback
@@ -13,7 +20,7 @@ import boto3
 
 from utils.logger import set_up_logger, alert_admin
 from utils.sms_client import send_sms
-from utils.email_client import send_email #send_email_atlassian_server
+from utils.email_client import send_email 
 from utils.aws_utils import AWSUtils
 
 def lambda_handler(event, context):
