@@ -26,10 +26,6 @@ variable "S3_STATE_BUCKET_NAME" {
   type        = string 
 }
 
-variable "ATLASSIAN_EMAIL_ID"   {
-  type        = string 
-}
-
 variable "SMTP_SENDER_EMAIL"    {
   type        = string
 }
