@@ -135,10 +135,11 @@ class LambdaHandler():
             return
         
         cache_updated = self.update_cache([prop['id'] for prop in new_properties])
-        if cache_updated:
-            self.logger.info('Execution completed successfully.')
-        else:
+        if not cache_updated:
             self.logger.error('Execution completed but failed to update property cache.')
+            return
+        self.logger.info('Execution completed successfully.')
+       
 
     
     
