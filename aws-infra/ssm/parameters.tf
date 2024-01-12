@@ -50,6 +50,6 @@ resource "aws_ssm_parameter" "smtp_recipient_email" {
 resource "aws_ssm_parameter" "daily_property_cache" {
   name  = "/rental_alerts/daily_cache" 
   type  = "SecureString"
-  value = "null"
+  value = "[]"
 }
 

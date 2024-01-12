@@ -121,7 +121,7 @@ class LambdaHandler():
         self.logger.info(f'Twilio SMS alert response: {send_sms(format_listings)}')
 
         current_hour: str = datetime.now().strftime('%H')
-        if int(current_hour) >= 21:
+        if int(current_hour) >= 12:
             self.logger.info('Clearning today\'s history...')
             self.clear_cache()
             return
