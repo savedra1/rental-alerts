@@ -13,7 +13,8 @@ import boto3
 
 from utils.logger import set_up_logger, alert_admin
 from utils.sms_client import send_sms
-from utils.email_client import send_email, send_email_atlassian_server
+from utils.email_client import send_email #send_email_atlassian_server
+from utils.aws_utils import AWSUtils
 
 def lambda_handler(event, context):
     function_response = {
@@ -37,9 +38,9 @@ def lambda_handler(event, context):
             'stackTrace': str(traceback_string)
         } )
         logger.error(err_msg)
-        alert_admin(err_msg)
+        logger.info(f'Response when sending error alert to admin: {alert_admin(err_msg)}')
         function_response['statusCode'] = 500
-        function_response['body'] = str(err)
+        function_response['body'] = str(err_msg)
 
 
 class LambdaHandler():
@@ -47,7 +48,8 @@ class LambdaHandler():
         self.event = event
         self.context = context
         self.logger = logger
-        self.location, self.max_radius, self.min_bdrooms, self.max_price = self.get_config()
+        self.location, self.max_radius, self.min_bedrooms, self.max_price = self.get_config()
+        self.awsu = AWSUtils()
     
     @staticmethod
     def get_config() -> (str, str, str, str):
@@ -81,42 +83,54 @@ class LambdaHandler():
         all_properties: list = rm_properties + otm_properties  # zoopla_properties + otm_properties
         return all_properties
     
-    def update_cache(self, properties: list) -> None:
-        with open('resources/todays_properties.json', 'r') as f:
-            current_data = json.load(f)
-            updated_data = current_data['publishedToday'] + properties
-        with open('resources/todays_properties.json', 'w') as f:
-            json.dump({"publishedToday": updated_data}, f)
+    def update_cache(self, properties: list) -> bool:
+        try:
+            current_data: str = self.awsu.get_parameter('/rental_alerts/daily_cache')
+            updated_data = current_data + str(properties)
+            self.awsu.update_parameter('/rental_alerts/daily_cache', str(updated_data))
+            return True
+        except Exception as err:
+            self.logger.error(err)
+            return False
 
-    def clear_cache(self) -> None:
-        with open('resources/todays_properties.json', 'w') as f:
-            json.dump({"publishedToday": []}, f)
-
+    def clear_cache(self) -> bool:
+        try:
+            self.awsu.update_parameter('/rental_alerts/daily_cache', '[]')
+            return True
+        except Exception as err:
+            self.logger.error(err)
+            return False
+        
     def run(self) -> None:
-        new_properties = self.get_new_listings()
+        todays_listings_cache: str = self.awsu.get_parameter('/rental_alerts/daily_cache')
+        properties: list = self.get_new_listings()
+
+        new_properties = [prop for prop in properties if prop['id'] not in todays_listings_cache]
         
         if not new_properties:
             self.logger.info('Nothng new found.')
             return
-
-        format_listings = f'New listings as of {datetime.now().strftime("%H-%M-%s")}:\n'
+        
+        format_listings = f'New listings as of {datetime.now()}:\n\n'
         for prop in new_properties:
             format_listings += f'{prop["url"]}\n\n'
+        
+        self.logger.info(format_listings)
 
-        #send_sms(format_listings)
-        #self.logger.info(f'Atlassian server mail response: {str(send_email_atlassian_server(format_listings))}')
-        self.logger.info(f'Response when sending e,ail with Python smtplib client: {send_email(format_listings)}')
+        self.logger.info(f'Response when sending email with Python smtplib client: {send_email(format_listings)}')
         self.logger.info(f'Twilio SMS alert response: {send_sms(format_listings)}')
 
-        current_hour = datetime.now().strftime('%H')
+        current_hour: str = datetime.now().strftime('%H')
         if int(current_hour) >= 21:
             self.logger.info('Clearning today\'s history...')
             self.clear_cache()
             return
         
-        self.update_cache(new_properties)
-
-# ####
+        cache_updated = self.update_cache([prop['id'] for prop in new_properties])
+        if cache_updated:
+            self.logger.info('Execution completed successfully.')
+        else:
+            self.logger.error('Execution completed but failed to update property cache.')
 
     
     

@@ -5,7 +5,6 @@ import json
 from utils.web_session import get_requests_session
 from utils.constants import OTM_HTML_EXTRACTION
 
-
 class OnTheMarket():
     def __init__(self, logger, location, max_radius, min_bedrooms, max_price):# -> None:
         self.logger = logger
@@ -56,7 +55,7 @@ class OnTheMarket():
 
             if property['days-since-added-reduced'].split(' ')[1] == 'today':
                 todays_listings.append({
-                    'id': property['id'],
+                    'id': str(property['id']),
                     'url': f'https://onthemarket.com{property["property-link"]}',
                     'price': property['price'],
                     'listed_date': property['days-since-added-reduced'].split(' ')[1]

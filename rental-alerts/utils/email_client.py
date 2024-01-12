@@ -7,21 +7,22 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 # Email configuration
-def send_email(listings: str) -> str:
+def send_email(listings, subject="NEW LISTINGS ADDED") -> str:
     """This function requires a GMAIL email acocunt
         with an app password as auth. """
+    
     awsu = AWSUtils()
 
-    sender_email    =  awsu.get_api_password('/smtp/sender_email')
-    sender_password = awsu.get_api_password('/smtp/sender_key')
-    recipient_email = awsu.get_api_password('/smtp/recipient_email')
-    subject         = "NEW LISTINGS ADDED"
-    body            = listings
+    sender_email:    str = awsu.get_parameter('/smtp/sender_email')
+    sender_password: str = awsu.get_parameter('/smtp/sender_key')
+    recipient_email: str = awsu.get_parameter('/smtp/recipient_email')
+    sub:             str = subject
+    body:            str = listings
 
     try:
         message = MIMEMultipart()
         message.attach(MIMEText(body, 'plain'))
-        message['Subject'] = subject
+        message['Subject'] = sub
         message['From'] = sender_email
         message['To'] = recipient_email
 
@@ -38,10 +39,11 @@ def send_email(listings: str) -> str:
         return err
 
 
+
 def send_email_atlassian_server(listings) -> int:
     """secondary method of ending an email utilising an atlassian AFJ"""
     response = requests.post(
-        AWSUtils().get_api_password('atlassian/email_id'),
+        AWSUtils().get_parameter('atlassian/email_id'),
         headers = {
             "Content-Type": "application/json"
         },

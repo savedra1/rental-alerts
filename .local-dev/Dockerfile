@@ -1,12 +1,12 @@
-FROM python:3.10
+FROM python:3.12
 
-WORKDIR /home/michael/personal_projects/renting_alerts
+WORKDIR /app
 
 COPY requirements.txt .
 
 #RUN pip install --no-cache-dir -r requirements.txt 
 #RUN playwright install && playwright install-deps
 
-COPY . /home/michael/personal_projects/renting_alerts/
+COPY . /app
 
 CMD ["python", "tmp.py"]
