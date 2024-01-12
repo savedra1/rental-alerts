@@ -30,7 +30,8 @@ resource "aws_iam_role_policy" "ssm_read_only_policy" {
           "ssm:GetParameters",
           "ssm:GetParametersByPath",
           "ssm:List*",
-          "ssm:Describe*"
+          "ssm:Describe*",
+          "ssm:PutParameter"
         ],
         Effect   = "Allow",
         Resource = "*",
