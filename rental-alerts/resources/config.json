@@ -1,6 +1,6 @@
 {
     "location": "bristol",
-    "radius_miles": "0",
+    "radius_miles": "1",
     "min_bedrooms": "1",
     "max_price": "1300"
 }
