@@ -41,10 +41,10 @@ jobs:
         cd ..
         zip -r aws-infra/python.zip ./python
         rm -rf ./python
-      - name: Zip main function source code
-        run: |
-          cd rental-alerts
-          zip -r ../aws-infra/main_function_code.zip .
+    - name: Zip main function source code
+      run: |
+        cd rental-alerts
+        zip -r ../aws-infra/main_function_code.zip .
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v1
     - name: Terraform init
