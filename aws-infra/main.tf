@@ -22,7 +22,7 @@ module "cloudwatch" {
     source    = "./cloudwatch"
     func_name = "${module.lambda.func_name}"
     func_arn  = "${module.lambda.func_arn}"
-    active    = false # set false to disable 
+    state     = "DISABLED" # set ENABLED to disable 
 }
 
 module "ssm" { # Requires environment vars passed in for twilio auth information
