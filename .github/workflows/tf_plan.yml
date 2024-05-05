@@ -56,4 +56,4 @@ jobs:
       id: plan
       run: |
         cd aws-infra
-        terraform plan
+        terraform destroy
