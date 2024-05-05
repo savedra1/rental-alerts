@@ -29,7 +29,7 @@ def send_email(listings, subject="NEW LISTINGS ADDED") -> str:
         with smtplib.SMTP('smtp.gmail.com', 587) as server:
             server.starttls()  # Start a secure connection
             server.login(sender_email, sender_password)  # Log in to the Gmail account
-
+                
             response = server.sendmail(sender_email, recipient_email, message.as_string())
             print(response)
 
